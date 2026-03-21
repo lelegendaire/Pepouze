@@ -1,65 +1,824 @@
+"use client"
 import Image from "next/image";
-
+import { California_Paradise, HelveticaNeue, StardomRegular } from "./font";
+import { Phone, Star } from "lucide-react";
+import AnimatedLink from "@/components/AnimatedLink";
+import { FAQ } from "@/components/FAQ";
+import { FaInstagram,FaFacebookSquare  } from "react-icons/fa";
+import { useState, useEffect,useRef} from "react";
+import ReservationSection from "./reservation"
 export default function Home() {
+  const [offset, setOffset] = useState(0)
+const headerRef = useRef(null)
+ useEffect(() => {
+  let ticking = false
+
+  const update = () => {
+    if (!headerRef.current) return
+
+    const scrollY = window.scrollY
+
+    // 👇 parallax fluide (pas de re-render React)
+    headerRef.current.style.backgroundPosition = `center ${scrollY * 0.4}px`
+
+    ticking = false
+  }
+
+  const onScroll = () => {
+    if (!ticking) {
+      requestAnimationFrame(update)
+      ticking = true
+    }
+  }
+
+  window.addEventListener("scroll", onScroll)
+
+  return () => window.removeEventListener("scroll", onScroll)
+}, [])
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <main className="text-(--bg-secondery-color) bg-(--bg-primary-color) scroll-smooth">
+      <header ref={headerRef} className="h-screen w-full "  style={{
+        backgroundImage:
+          "url(https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?q=80&w=1171&auto=format&fit=crop)",
+        backgroundSize: "cover",
+        backgroundPosition: `center ${offset * 0.5}px`, // 👈 effet parallax
+        
+      }}>
+        <div className="bg-linear-to-t from-black to-transparent opacity-60 h-full w-full absolute"></div>
+        <div className="bg-linear-to-b via-[#00000000] from-black to-transparent opacity-60 h-full w-full absolute"></div>
+        <div
+          className={`${HelveticaNeue.className} z-10 relative flex flex-col items-center justify-center h-full text-white`}
+        >
+          <div className="ml-auto w-1/3">
+            <ul className="flex items-center justify-around w-full mt-5">
+              <li>
+                <AnimatedLink
+                  color="white"
+                  
+                  rel="noopener noreferrer"
+                  href="#"
+                >
+                  Maison
+                </AnimatedLink>
+              </li>
+              <li>
+                <AnimatedLink
+                  color="white"
+                  
+                  rel="noopener noreferrer"
+                  href="#histoire"
+                >
+                  Notre histoire
+                </AnimatedLink>
+              </li>
+              <li>
+                <AnimatedLink
+                  color="white"
+                  target_on="_blank"
+                  rel="noopener noreferrer"
+                  href="/menu"
+                >
+                  Menu
+                </AnimatedLink>
+              </li>
+              <li>
+                <AnimatedLink
+                  color="white"
+                  
+                  rel="noopener noreferrer"
+                  href="#reservation"
+                >
+                  Réservation
+                </AnimatedLink>
+              </li>
+              <li>
+                <AnimatedLink
+                  color="white"
+                  
+                  rel="noopener noreferrer"
+                  href="#lieu"
+                >
+                  Lieu
+                </AnimatedLink>
+              </li>
+            </ul>
+          </div>
+          <div className="flex flex-col items-center justify-center mt-auto mb-auto">
+            <p>Bienvenue à la crêperie</p>
+            <h1
+              className={`${California_Paradise.className} text-white text-8xl text-center`}
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+              Pépouze
+            </h1>
+            <h3 className="text-2xl">La crêperie du 12</h3>
+            <h3>Galettes, Crêpes & Chill</h3>
+            <div className="text-center mt-16">
+              <a
+                href="#menu"
+                className="block p-[8px_22px] bg-transparent border-2 border-white rounded-4xl text-white text-xs font-bold uppercase decoration-0 cursor-pointer transition-all duration-300 ease relative overflow-hidden before:content-[''] before:absolute before:inset-0 before:bg-white before:scale-x-0 before:origin-left before:transition-transform before:duration-350 before:ease before:-z-1 hover:text-black hover:before:scale-x-100"
+              >
+                Réservé dès maintenant
+              </a>
+            </div>
+          </div>
+          <div className="mt-auto flex items-center justify-between w-full ">
+            <p className="ml-2 mb-2">Fait maison</p>
+
+            <p className="flex gap-2 mr-2 mb-2">
+              <Phone size={"20"} />
+              +06 16 27 34 22
+            </p>
+          </div>
+        </div>
+      
+      </header>
+      <section
+        className={`${HelveticaNeue.className}  notre_histoire  h-screen w-full flex items-center justify-center gap-5`}
+        id="histoire"
+      >
+        <div className="flex flex-col w-1/3 items-center justify-center m-5 gap-3">
+          <p className={`${California_Paradise.className} lg:text-7xl text-5xl `}>01</p>
+          <h2 className="lg:text-4xl text-2xl  font-bold">Ingrédients frais</h2>
+          <h3 className="text-center">
+            Marie cuisine des ingrédients frais. Au menu, six galettes
+            spéciales, dont une végétarienne et une au saumon fumé, qui côtoient
+            les grands classiques. Plusieurs fois par mois, une galette et une
+            crêpe font leu
+          </h3>
+        </div>
+        <div className="flex flex-col w-1/3 items-center justify-center m-5 gap-3">
+          <p className={`${California_Paradise.className}  lg:text-7xl text-5xl `}>02</p>
+          <h2 className="lg:text-4xl text-2xl font-bold">Spécialité du chef</h2>
+          <h3 className="text-center">
+            Marie cuisine des ingrédients frais. Au menu, six galettes
+            spéciales, dont une végétarienne et une au saumon fumé, qui côtoient
+            les grands classiques. Plusieurs fois par mois, une galette et une
+            crêpe font leu
+          </h3>
+        </div>
+        <div className="flex flex-col w-1/3 items-center justify-center m-5 gap-3">
+          <p className={`${California_Paradise.className}  lg:text-7xl text-5xl `}>03</p>
+          <h2 className="lg:text-4xl text-2xl font-bold">Evènement</h2>
+          <h3 className="text-center">
+            Marie cuisine des ingrédients frais. Au menu, six galettes
+            spéciales, dont une végétarienne et une au saumon fumé, qui côtoient
+            les grands classiques. Plusieurs fois par mois, une galette et une
+            crêpe font leu
+          </h3>
+        </div>
+      </section>
+      <section
+        className={`${HelveticaNeue.className}  h-screen w-full flex items-center justify-center gap-5`}
+      >
+        <div className="w-1/2 flex items-center justify-center relative">
+          <div className="flex h-130 w-100 overflow-hidden relative">
+            <Image
+              alt="restaurant"
+              fill={true}
+              src={
+                "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              }
+              className="object-cover"
+            />
+          </div>
+          <div className="flex h-70 w-50 overflow-hidden absolute bottom-10 right-10">
+            <Image
+              alt="restaurant"
+              fill={true}
+              src={
+                "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              }
+              className="object-cover"
+            />
+          </div>
+        </div>
+        <div className="w-1/2 ">
+          <h2 className="font-bold text-2xl">Bienvenue à Pepouze</h2>
+          <p>
+            Grâce à une isolation phonique soignée et un éclairage modulable,
+            l’ambiance est à l’image du nom : détendue et conviviale. On peut
+            aussi bien prendre son temps pour papoter entre amis que déjeuner
+            sur le pouce en prenant la formule rapide le midi. Un endroit
+            tranquille, où simplicité rime avec qualité !{" "}
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+      <section
+        className={`${HelveticaNeue.className} Spécialité  h-full pt-10 pb-10 flex flex-col justify-center items-center`}
+      >
+        <h1 className={`${StardomRegular.className} text-4xl`}>
+          Nos Spécialités
+        </h1>
+        <h2>Choisis par nos soins</h2>
+        <div className="flex gap-5">
+          <div className="relative">
+            <p className="z-20 text-white text-2xl absolute text-center w-full h-50 flex items-center justify-center">
+              Galette{" "}
+            </p>
+            <p className="z-20 text-white absolute text-center w-full h-50 flex items-center justify-center bottom-0">
+              pommes de terre, fromage raclette, oignons confits, lardons fumés,
+              crème
+            </p>
+            <div className="z-10 bg-linear-to-t from-black to-transparent opacity-90 absolute h-full w-full"></div>
+            <div className="h-75 w-100 relative overflow-hidden">
+              <Image
+                alt="restaurant2"
+                fill={true}
+                className="object-cover"
+                src={
+                  "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                }
+              ></Image>
+            </div>
+          </div>
+          <div className="relative">
+            <p className="z-20 text-white text-2xl absolute text-center w-full h-50 flex items-center justify-center">
+              Galette{" "}
+            </p>
+            <p className="z-20 text-white absolute text-center w-full h-50 flex items-center justify-center bottom-0">
+              pommes de terre, fromage raclette, oignons confits, lardons fumés,
+              crème
+            </p>
+            <div className="z-10 bg-linear-to-t from-black to-transparent opacity-90 absolute h-full w-full"></div>
+            <div className="h-75 w-100 relative overflow-hidden">
+              <Image
+                alt="restaurant2"
+                fill={true}
+                className="object-cover"
+                src={
+                  "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                }
+              ></Image>
+            </div>
+          </div>
         </div>
-      </main>
-    </div>
+        <div className="flex gap-5 mt-5">
+          <div className="relative">
+            <p className="z-20 text-white text-2xl absolute text-center w-full h-50 flex items-center justify-center">
+              Galette{" "}
+            </p>
+            <p className="z-20 text-white absolute text-center w-full h-50 flex items-center justify-center bottom-0">
+              pommes de terre, fromage raclette, oignons confits, lardons fumés,
+              crème
+            </p>
+            <div className="z-10 bg-linear-to-t from-black to-transparent opacity-90 absolute h-full w-full"></div>
+            <div className="h-75 w-100 relative overflow-hidden">
+              <Image
+                alt="restaurant2"
+                fill={true}
+                className="object-cover"
+                src={
+                  "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                }
+              ></Image>
+            </div>
+          </div>
+          <div className="relative">
+            <p className="z-20 text-white text-2xl absolute text-center w-full h-50 flex items-center justify-center">
+              Galette{" "}
+            </p>
+            <p className="z-20 text-white absolute text-center w-full h-50 flex items-center justify-center bottom-0">
+              pommes de terre, fromage raclette, oignons confits, lardons fumés,
+              crème
+            </p>
+            <div className="z-10 bg-linear-to-t from-black to-transparent opacity-90 absolute h-full w-full"></div>
+            <div className="h-75 w-100 relative overflow-hidden">
+              <Image
+                alt="restaurant2"
+                fill={true}
+                className="object-cover"
+                src={
+                  "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                }
+              ></Image>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        className={`${HelveticaNeue.className} menu  h-full w-full flex items-center justify-center flex-col`}
+      >
+        <h1 className={`${StardomRegular.className} text-4xl`}>Notre Menu</h1>
+        <div className=" justify-center items-center w-full hidden">
+          <div className="menu_droit w-1/2 ml-10">
+            <h2 className="text-2xl font-bold">Les crêpes du moments</h2>
+            <p className="mb-5 text-xl">Les classiques:</p>
+            <ul className="flex flex-col gap-3">
+              <li className="flex justify-between items-center border-b p-3">
+                <p>Beurre</p>
+                <p className="mr-3">2.80€</p>
+              </li>
+              <li className="flex justify-between items-center border-b p-3">
+                <p>Sucre</p>
+                <p className="mr-3">2.80€</p>
+              </li>
+              <li className="flex justify-between items-center border-b p-3">
+                <p>Beurre sucre</p>
+                <p className="mr-3">3.60€</p>
+              </li>
+              <li className="flex justify-between items-center border-b p-3">
+                <p>Beurre sucre citron</p>
+                <p className="mr-3">4.60€</p>
+              </li>
+              <li className="flex justify-between items-center border-b p-3">
+                <p>Confiture(fraise,abricot)</p>
+                <p className="mr-3">4.30€</p>
+              </li>
+              <li className="flex justify-between items-center border-b p-3">
+                <p>Chocolat maison</p>
+                <p className="mr-3">4.60€</p>
+              </li>
+              <li className="flex justify-between items-center border-b p-3">
+                <p>Caramel au beurre salé maison</p>
+                <p className="mr-3">4.80€</p>
+              </li>
+              <li className="flex justify-between items-center border-b p-3">
+                <p>Pâte à tartiner au chocolat</p>
+                <p className="mr-3">4.30€</p>
+              </li>
+            </ul>
+            <div className="flex justify-between items-center w-full mt-5 text-[14px]">
+              <p className="">Supplément chantilly, une boule de glace</p>
+              <p className="mr-3">1.90€</p>
+            </div>
+          </div>
+
+          <div className="w-1/2 h-100 overflow-hidden mr-10 flex items-center justify-center">
+            <div className="w-70/100 h-100 relative">
+              <Image
+                alt="restaurant2"
+                fill={true}
+                className="object-cover"
+                src={
+                  "https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                }
+              ></Image>
+            </div>
+          </div>
+        </div>
+        <div className=" justify-center items-center w-full hidden">
+          <div className="w-1/2 h-100 overflow-hidden mr-10 flex items-center justify-center">
+            <div className="w-70/100 h-100 relative">
+              <Image
+                alt="restaurant2"
+                fill={true}
+                className="object-cover"
+                src={
+                  "https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                }
+              ></Image>
+            </div>
+          </div>
+          <div className="menu_droit w-1/2 ml-10">
+            <p className="text-xl">Les spéciales:</p>
+            <ul className="flex flex-col gap-3">
+              <li className="flex justify-between items-center border-b p-3">
+                <div>
+                  <p className="font-bold">La Caliorne</p>
+                  <p>crème d'amandes maison, chantilly, éclats d'amandes</p>
+                </div>
+                <div>
+                  <p className="mr-3">2.80€</p>
+                </div>
+              </li>
+              <li className="flex justify-between items-center border-b p-3">
+                <div>
+                  <p className="font-bold">La Gautrais</p>
+                  <p>
+                    crème de coco maison, chantilly, copeaux de noix de coco
+                  </p>
+                </div>
+                <div>
+                  <p className="mr-3">2.80€</p>
+                </div>
+              </li>
+              <li className="flex justify-between items-center border-b p-3">
+                <div>
+                  <p className="font-bold">La Miaudière</p>
+                  <p>
+                    caramel au beurre salé maison, boule de glace vanille,
+                    chantilly
+                  </p>
+                </div>
+                <div>
+                  <p className="mr-3">3.60€</p>
+                </div>
+              </li>
+              <li className="flex justify-between items-center border-b p-3">
+                <div>
+                  <p className="font-bold">La Besnardais</p>
+                  <p>poire, chocolat, éclats d'amandes, chantilly</p>
+                </div>
+                <div>
+                  <p className="mr-3">4.60€</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="flex justify-center items-center w-full">
+          <div className="menu_gauche w-1/2 ml-10">
+            <h2 className="text-2xl font-bold">Galette de sarrasin</h2>
+            <p className="italic">
+              Toutes nos galettes sont produites à partir de la farine de
+              sarrasin IGP breton issue du moulin Carouge
+            </p>
+            <p className="mb-5 text-xl">Les classiques:</p>
+
+            <ul className="flex flex-col gap-3">
+              <li className="flex justify-between items-center border-b p-3">
+                <p>Beurre</p>
+                <p className="mr-3">3.50€</p>
+              </li>
+              <li className="flex justify-between items-center border-b p-3">
+                <div>
+                  <p className="font-bold">Complète</p>
+                  <p>beurre, ceuf miroir, jambon, fromage</p>
+                </div>
+                <div>
+                  <p className="mr-3">7.50€</p>
+                </div>
+              </li>
+              <li className="flex justify-between items-center border-b p-3">
+                <p>Andouille de Guéméné, fromage</p>
+                <p className="mr-3">7.00€</p>
+              </li>
+              <li className="flex justify-between items-center border-b p-3">
+                <p>Œuf jambon</p>
+                <p className="mr-3">6.50€</p>
+              </li>
+            </ul>
+            <p className="mb-5 text-xl mt-10">Les variantes:</p>
+
+            <ul className="flex flex-col gap-3">
+              <li className="flex justify-between items-center border-b p-3">
+                <p>Œuf comté AOP ou comté AOP jambon</p>
+                <p className="mr-3">6.50€</p>
+              </li>
+              <li className="flex justify-between items-center border-b p-3">
+                <div>
+                  <p>Super complète</p>
+                  <p>complète+ champignons</p>
+                </div>
+                <div>
+                  <p className="mr-3">9.40€</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div className="w-1/2 h-100 overflow-hidden mr-10 flex items-center justify-center">
+            <div className="w-70/100 h-100 relative">
+              <Image
+                alt="restaurant2"
+                fill={true}
+                className="object-cover"
+                src={
+                  "https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                }
+              ></Image>
+            </div>
+          </div>
+        </div>
+        <div className=" justify-center items-center w-full flex">
+          <div className="w-1/2 h-100 overflow-hidden mr-10 flex items-center justify-center">
+            <div className="w-70/100 h-100 relative">
+              <Image
+                alt="restaurant2"
+                fill={true}
+                className="object-cover"
+                src={
+                  "https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                }
+              ></Image>
+            </div>
+          </div>
+          <div className="menu_droit w-1/2 ml-10">
+            <p className="text-xl">Les spéciales:</p>
+            <ul className="flex flex-col gap-3">
+              <li className="flex justify-between items-center border-b p-3">
+                <div>
+                  <p className="font-bold">La Bossardière</p>
+                  <p>fromage, champignons, crème, lardons fumés</p>
+                </div>
+                <div>
+                  <p className="mr-3">10.00€</p>
+                </div>
+              </li>
+              <li className="flex justify-between items-center border-b p-3">
+                <div>
+                  <p className="font-bold">La Pépinière</p>
+                  <p>œuf, fromage, champignons</p>
+                </div>
+                <div>
+                  <p className="mr-3">7.00€</p>
+                </div>
+              </li>
+              <li className="flex justify-between items-center border-b p-3">
+                <div>
+                  <p className="font-bold">La Rouesnais</p>
+                  <p>
+                    pommes de terre, fromage raclette, oignons confits, lardons
+                    fumés, crème
+                  </p>
+                </div>
+                <div>
+                  <p className="mr-3">13.90€</p>
+                </div>
+              </li>
+              <li className="flex justify-between items-center border-b p-3">
+                <div>
+                  <p className="font-bold">La Bezirais</p>
+                  <p>fromage, saumon fumé, crème fraîche, ciboulette, citron</p>
+                </div>
+                <div>
+                  <p className="mr-3">12.40€</p>
+                </div>
+              </li>
+              <li className="flex justify-between items-center border-b p-3">
+                <div>
+                  <p className="font-bold">La Feutelais</p>
+                  <p>pommes de terre, oignons confits, comté AOP, jambon sec</p>
+                </div>
+                <div>
+                  <p className="mr-3">13.00€</p>
+                </div>
+              </li>
+              <li className="flex justify-between items-center border-b p-3">
+                <div>
+                  <p className="font-bold">La Margatière</p>
+                  <p>pommes, andouille de Guéméné, crème moutarde</p>
+                </div>
+                <div>
+                  <p className="mr-3">9.80€</p>
+                </div>
+              </li>
+            </ul>
+
+            <div className="flex justify-between items-center w-full mt-5 text-[14px]">
+              <p className="">Bol de salade verte</p>
+              <p className="mr-3">2.00€</p>
+            </div>
+            <div className="flex justify-between items-center w-full mt-5 text-[14px]">
+              <p className="">
+                Supplément par ingrédient (oignons, champignons, pommes de
+                terre)
+              </p>
+              <p className="mr-3">1.90€</p>
+            </div>
+          </div>
+        </div>
+        <div className="menu_droit w-1/2 ml-10 hidden">
+          <h2 className="text-xl font-bold">Les crêpes du moments</h2>
+          <p className="text-[14px]">Formules:</p>
+          <ul className="text-[14px]">
+            <li>
+              Rapides (uniquement le midi): galette complète, crêpe beurre
+              sucre, bol de salade{" "}
+            </li>
+            <li>
+              Enfant (jusqu'à 12 ans): galette jambon fromage, crêpe chocolat,
+              verre de jus de pomme ou sirop à l'eau
+            </li>
+          </ul>
+        </div>
+        <div className="flex flex-col items-center justify-center mt-auto mb-auto relative">
+          <div className="text-center mt-16 relative flex z-1">
+            <a
+              href="#menu"
+              className="block p-[8px_22px] bg-transparent border-2 border-black rounded-4xl text-black text-xs font-bold uppercase decoration-0 cursor-pointer transition-all duration-300 ease relative overflow-hidden before:content-[''] before:absolute before:inset-0 before:bg-black before:scale-x-0 before:origin-left before:transition-transform before:duration-350 before:ease before:-z-1 hover:text-white hover:before:scale-x-100"
+            >
+              Voir tout le menu
+            </a>
+          </div>
+        </div>
+      </section>
+      <section
+        className={`${HelveticaNeue.className}  h-screen w-full flex items-center justify-center gap-5`}
+      >
+        {" "}
+        <div className="w-1/2 text-center flex flex-col items-center justify-center">
+          <h2 className="font-bold text-2xl">Marie Marion</h2>
+          <p>
+            Fille d’un formateur en cuisine et d’une psychologue, elle a grandi
+            entourée de bons petits plats et d’odeurs gourmandes. Passionnée de
+            chocolat, elle a suivi une formation d’artisan crêpier avant de
+            travailler dans plusieurs établissements rennais.{" "}
+          </p>
+        </div>
+        <div className="w-1/2 flex items-center justify-center relative">
+          <div className="flex h-130 w-100 overflow-hidden relative">
+            <Image
+              alt="restaurant"
+              fill={true}
+              src={"/MARIE.png"}
+              className="object-cover"
+            />
+          </div>
+        </div>
+      </section>
+      <section
+        className={`${HelveticaNeue.className} FAQ  h-screen flex w-full justify-center items-center flex-col`}
+      >
+        <div className="flex w-full">
+          <div className="w-1/2 flex items-center justify-center">
+            {" "}
+            <FAQ />
+          </div>
+
+          <div className="w-1/2">
+            <h1 className={`${StardomRegular.className} text-4xl`}>FAQ</h1>
+            <h3>Foire aux questions</h3>
+            <p>On a beaucoup de question</p>
+          </div>
+        </div>
+      </section>
+      <section
+        className={`${HelveticaNeue.className} avis_client  h-screen w-full flex flex-col justify-center items-center gap-3`}
+      >
+        <h1 className={`${StardomRegular.className} text-4xl mb-20`}>Les avis de nos clients</h1>
+        <div className="flex w-full items-center justify-center">
+          <div className="flex flex-col items-center justify-center w-75 ">
+            <div className="flex items-center justify-center">
+              <Star fill="#c39d63" color="#c39d63" />
+              <Star fill="#c39d63" color="#c39d63" />
+              <Star fill="#c39d63" color="#c39d63" />
+              <Star fill="#c39d63" color="#c39d63" />
+              <Star fill="#c39d63" color="#c39d63" />
+            </div>
+            <div className="flex flex-col gap-4 mt-3">
+              <h2 className="font-bold text-3xl">"Super crêperie à Laillé!"</h2>
+              <p className=" text-black">
+                "Service rapide et arrangeant. Galettes délicieuses et
+                copieuses. Je recommande vivement!!!"
+              </p>
+              <p className="font-bold">Suzanna</p>
+            </div>
+          </div>
+          <div className="flex flex-col items-center justify-center w-75 ">
+            <div className="flex items-center justify-center">
+              <Star fill="#c39d63" color="#c39d63" />
+              <Star fill="#c39d63" color="#c39d63" />
+              <Star fill="#c39d63" color="#c39d63" />
+              <Star fill="#c39d63" color="#c39d63" />
+              <Star fill="#c39d63" color="#c39d63" />
+            </div>
+            <div className="flex flex-col gap-4 mt-3">
+              <h2 className="font-bold text-3xl">
+                "Service rapide et personnel très agréable !"
+              </h2>
+              <p className=" text-black">
+                " Galettes et crêpes délicieuses pour des prix raisonnables. Je
+                recommande !"
+              </p>
+              <p className="font-bold">Céline</p>
+            </div>
+          </div>
+          <div className="flex flex-col items-center justify-center w-75 ">
+            <div className="flex items-center justify-center">
+              <Star fill="#c39d63" color="#c39d63" />
+              <Star fill="#c39d63" color="#c39d63" />
+              <Star fill="#c39d63" color="#c39d63" />
+              <Star fill="#c39d63" color="#c39d63" />
+              <Star fill="#c39d63" color="#c39d63" />
+            </div>
+            <div className="flex flex-col gap-4 mt-3">
+              <h2 className="font-bold text-3xl">"Déco élégante"</h2>
+              <p className=" text-black">
+                "Accueil chaleureux, des crêpes et galettes excellentes. Tout
+                est parfait, du service soigné aux produits frais. Une adresse à
+                recommander sans hésiter !"
+              </p>
+              <p className="font-bold">François</p>
+            </div>
+          </div>
+          <div className="flex flex-col items-center justify-center w-75 ">
+            <div className="flex items-center justify-center">
+              <Star fill="#c39d63" color="#c39d63" />
+              <Star fill="#c39d63" color="#c39d63" />
+              <Star fill="#c39d63" color="#c39d63" />
+              <Star fill="#c39d63" color="#c39d63" />
+              <Star fill="#c39d63" color="#c39d63" />
+            </div>
+            <div className="flex flex-col gap-4 mt-3">
+              <h2 className="font-bold text-3xl">"Super crêperie !"</h2>
+              <p className=" text-black">
+                "Nous avons très bien mangé, galettes bien fournies, service
+                avec le sourire, c’était parfait !"
+              </p>
+              <p className="font-bold">Margaux</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    <ReservationSection/>
+      <section id="lieu" className="Localisation  h-screen flex items-center justify-center flex-col gap-3">
+        <h1 className="text-xl">Nous sommes ici</h1>
+        <div className="h-100 w-200 rounded-2xl overflow-hidden shadow-2xl">
+          <iframe
+            className="w-full h-full object-cover rounded-xl"
+            width="1000"
+            height="300"
+            allow="geolocation"
+            src="https://api.maptiler.com/maps/019a29ee-fc6c-7214-992b-1d1cfeb51a7d/?key=OVKTtEmd6oXqJWFoFhnn#16/47.9783/-1.718"
+          ></iframe>
+        </div>
+      </section>
+      <footer className="w-full h-screen bg-(--bg-secondery-color) flex flex-col items-center justify-center text-white">
+        <div className="flex flex-col items-center justify-center w-full mb-auto mt-auto">
+          {" "}
+          <h1
+            className={`${California_Paradise.className} text-white text-8xl text-center`}
+          >
+            Pépouze
+          </h1>
+          <h3>Galettes, Crêpes & Chill</h3>
+          <ul className="flex items-center justify-around w-50/100 mt-5">
+            <li>
+              <AnimatedLink
+                color="white"
+                target_on="_blank"
+                rel="noopener noreferrer"
+                href="https://www.instagram.com/thefabstudio2/"
+              >
+                Maison
+              </AnimatedLink>
+            </li>
+            <li>
+              <AnimatedLink
+                color="white"
+                target_on="_blank"
+                rel="noopener noreferrer"
+                href="https://www.instagram.com/thefabstudio2/"
+              >
+                Notre histoire
+              </AnimatedLink>
+            </li>
+            <li>
+              <AnimatedLink
+                color="white"
+                target_on="_blank"
+                rel="noopener noreferrer"
+                href="https://www.instagram.com/thefabstudio2/"
+              >
+                Menu
+              </AnimatedLink>
+            </li>
+            <li>
+              <AnimatedLink
+                color="white"
+                target_on="_blank"
+                rel="noopener noreferrer"
+                href="https://www.instagram.com/thefabstudio2/"
+              >
+                Réservation
+              </AnimatedLink>
+            </li>
+            <li>
+              <AnimatedLink
+                color="white"
+                target_on="_blank"
+                rel="noopener noreferrer"
+                href="https://www.instagram.com/thefabstudio2/"
+              >
+                Lieu
+              </AnimatedLink>
+            </li>
+          </ul>
+        </div>
+        <div className="w-90/100 bg-gray-50 rounded-2xl h-[0.1px] mb-auto"></div>
+        <div className="flex justify-center items-center ">
+          <div className="flex flex-col w-1/3 m-5 gap-3">
+            <h2>Adresse</h2>
+            <p>12 rue du Point du Jour, Laillé, 35890</p>
+            <ul className="flex">
+              <li className="flex items-center justify-center p-2 bg-white rounded-full text-black"><FaInstagram /></li>
+              <li className="flex items-center justify-center p-2 bg-white rounded-full text-black"><FaFacebookSquare /></li>
+            </ul>
+          </div>
+          <div className="flex flex-col w-1/3 m-5 gap-3">
+            <h2>Contact</h2>
+            <p className="flex"><Phone/>06.16.27.34.22</p>
+           
+          </div>
+          <div className="flex flex-col w-1/3 m-5 gap-3">
+            <h2>Horaire</h2>
+            <p>Dimanche lundi, mardi : fermé</p>
+            <p>Mercredi – Jeudi : 12h – 14h </p>
+            <p>Vendredi - Samedi:  12h – 14h/ 19h – 21h00</p>
+            <button></button>
+          </div>
+        </div>
+        <div className="w-90/100 bg-gray-50 rounded-2xl h-[0.1px] mb-auto"></div>
+        <div className="flex justify-between w-full mb-5">
+          <p className="ml-5">
+            © 2026 Pépouze la crêperie du 12. Tous droits réservés
+          </p>
+          <p className="mr-5">
+            Conditions générales & Politique de confidentialité
+          </p>
+        </div>
+      </footer>
+    </main>
   );
 }

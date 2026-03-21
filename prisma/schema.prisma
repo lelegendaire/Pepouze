@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+  engineType = "client"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Reservation {
+  id        String   @id @default(cuid())
+  nom       String
+  personnes Int
+  email     String
+  telephone String
+  date      DateTime
+  heure     String
+  message   String?
+  createdAt DateTime @default(now())
+}
