@@ -1,70 +1,69 @@
-"use client"
+"use client";
 import Image from "next/image";
 import { California_Paradise, HelveticaNeue, StardomRegular } from "./font";
 import { Phone, Star } from "lucide-react";
 import AnimatedLink from "@/components/AnimatedLink";
 import { FAQ } from "@/components/FAQ";
-import { FaInstagram,FaFacebookSquare  } from "react-icons/fa";
-import { useState, useEffect,useRef} from "react";
-import ReservationSection from "./reservation"
+import dynamic from "next/dynamic"
+import { useState, useEffect, useRef } from "react";
+import ReservationSection from "@/components/reservation";
+import Footer from "@/components/footer";
+import MobileMenu from "@/components/MobileMenu";
+const Map = dynamic(() => import("@/components/Map"), { ssr: false })
 export default function Home() {
-  const [offset, setOffset] = useState(0)
-const headerRef = useRef(null)
- useEffect(() => {
-  let ticking = false
+  const [offset, setOffset] = useState(0);
+  const headerRef = useRef(null);
+  useEffect(() => {
+    let ticking = false;
 
-  const update = () => {
-    if (!headerRef.current) return
+    const update = () => {
+      if (!headerRef.current) return;
 
-    const scrollY = window.scrollY
+      const scrollY = window.scrollY;
 
-    // 👇 parallax fluide (pas de re-render React)
-    headerRef.current.style.backgroundPosition = `center ${scrollY * 0.4}px`
+      // 👇 parallax fluide (pas de re-render React)
+      headerRef.current.style.backgroundPosition = `center ${scrollY * 0.4}px`;
 
-    ticking = false
-  }
+      ticking = false;
+    };
 
-  const onScroll = () => {
-    if (!ticking) {
-      requestAnimationFrame(update)
-      ticking = true
-    }
-  }
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    };
 
-  window.addEventListener("scroll", onScroll)
+    window.addEventListener("scroll", onScroll);
 
-  return () => window.removeEventListener("scroll", onScroll)
-}, [])
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   return (
     <main className="text-(--bg-secondery-color) bg-(--bg-primary-color) scroll-smooth">
-      <header ref={headerRef} className="h-screen w-full "  style={{
-        backgroundImage:
-          "url(https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?q=80&w=1171&auto=format&fit=crop)",
-        backgroundSize: "cover",
-        backgroundPosition: `center ${offset * 0.5}px`, // 👈 effet parallax
-        
-      }}>
+      <header
+        ref={headerRef}
+        className="h-screen w-full relative"
+        style={{
+          backgroundImage: "url(/Hero.jpg)",
+          backgroundSize: "cover",
+          backgroundPosition: `bottom ${offset * 0.5}px`, // 👈 effet parallax
+        }}
+      >
         <div className="bg-linear-to-t from-black to-transparent opacity-60 h-full w-full absolute"></div>
         <div className="bg-linear-to-b via-[#00000000] from-black to-transparent opacity-60 h-full w-full absolute"></div>
         <div
           className={`${HelveticaNeue.className} z-10 relative flex flex-col items-center justify-center h-full text-white`}
         >
-          <div className="ml-auto w-1/3">
+          <div className="lg:w-40/100 w-auto ml-auto hidden md:block">
             <ul className="flex items-center justify-around w-full mt-5">
               <li>
-                <AnimatedLink
-                  color="white"
-                  
-                  rel="noopener noreferrer"
-                  href="#"
-                >
+                <AnimatedLink color="white" rel="noopener noreferrer" href="#">
                   Maison
                 </AnimatedLink>
               </li>
               <li>
                 <AnimatedLink
                   color="white"
-                  
                   rel="noopener noreferrer"
                   href="#histoire"
                 >
@@ -84,7 +83,6 @@ const headerRef = useRef(null)
               <li>
                 <AnimatedLink
                   color="white"
-                  
                   rel="noopener noreferrer"
                   href="#reservation"
                 >
@@ -94,7 +92,6 @@ const headerRef = useRef(null)
               <li>
                 <AnimatedLink
                   color="white"
-                  
                   rel="noopener noreferrer"
                   href="#lieu"
                 >
@@ -103,85 +100,85 @@ const headerRef = useRef(null)
               </li>
             </ul>
           </div>
+          {/* Nav mobile — burger */}
+          <div className="md:hidden absolute top-1 right-1 z-50">
+            <MobileMenu />
+          </div>
           <div className="flex flex-col items-center justify-center mt-auto mb-auto">
-            <p>Bienvenue à la crêperie</p>
+            <p className="text-xl lg:text-base">Bienvenue à la crêperie</p>
             <h1
-              className={`${California_Paradise.className} text-white text-8xl text-center`}
+              className={`${California_Paradise.className} text-white text-7xl lg:text-8xl text-center`}
             >
               Pépouze
             </h1>
-            <h3 className="text-2xl">La crêperie du 12</h3>
-            <h3>Galettes, Crêpes & Chill</h3>
-            <div className="text-center mt-16">
+            <h3 className="text-xl lg:text-2xl">La crêperie du 12</h3>
+            <h3 className="text-base lg:text-base">Galettes, Crêpes & Chill</h3>
+            <div className="text-center lg:mt-16 lg:relative absolute lg:bottom-0 bottom-20">
               <a
-                href="#menu"
-                className="block p-[8px_22px] bg-transparent border-2 border-white rounded-4xl text-white text-xs font-bold uppercase decoration-0 cursor-pointer transition-all duration-300 ease relative overflow-hidden before:content-[''] before:absolute before:inset-0 before:bg-white before:scale-x-0 before:origin-left before:transition-transform before:duration-350 before:ease before:-z-1 hover:text-black hover:before:scale-x-100"
+                href="#reservation"
+                className="block p-[4px_11px] lg:p-[8px_22px] bg-transparent border-2 border-white rounded-4xl text-white text-[8px] lg:text-xs font-bold uppercase decoration-0 cursor-pointer transition-all duration-300 ease relative overflow-hidden before:content-[''] before:absolute before:inset-0 before:bg-white before:scale-x-0 before:origin-left before:transition-transform before:duration-350 before:ease before:-z-1 hover:text-black hover:before:scale-x-100"
               >
                 Réservé dès maintenant
               </a>
             </div>
           </div>
           <div className="mt-auto flex items-center justify-between w-full ">
-            <p className="ml-2 mb-2">Fait maison</p>
+            <p className="ml-2 mb-2 text-xs lg:text-base">Fait maison</p>
 
-            <p className="flex gap-2 mr-2 mb-2">
-              <Phone size={"20"} />
+            <p className="flex gap-2 mr-2 mb-2 text-xs lg:text-base items-center justify-center">
+              <Phone
+                size={"20"}
+                className="scale-50 lg:scale-100 left-2 lg:left-0 relative"
+              />
               +06 16 27 34 22
             </p>
           </div>
         </div>
-      
       </header>
       <section
-        className={`${HelveticaNeue.className}  notre_histoire  h-screen w-full flex items-center justify-center gap-5`}
+        className={`${HelveticaNeue.className}  notre_histoire lg:h-screen h-full w-full flex flex-col md:flex-row items-center justify-center gap-5`}
         id="histoire"
       >
-        <div className="flex flex-col w-1/3 items-center justify-center m-5 gap-3">
-          <p className={`${California_Paradise.className} lg:text-7xl text-5xl `}>01</p>
-          <h2 className="lg:text-4xl text-2xl  font-bold">Ingrédients frais</h2>
-          <h3 className="text-center">
-            Marie cuisine des ingrédients frais. Au menu, six galettes
-            spéciales, dont une végétarienne et une au saumon fumé, qui côtoient
-            les grands classiques. Plusieurs fois par mois, une galette et une
-            crêpe font leu
-          </h3>
-        </div>
-        <div className="flex flex-col w-1/3 items-center justify-center m-5 gap-3">
-          <p className={`${California_Paradise.className}  lg:text-7xl text-5xl `}>02</p>
-          <h2 className="lg:text-4xl text-2xl font-bold">Spécialité du chef</h2>
-          <h3 className="text-center">
-            Marie cuisine des ingrédients frais. Au menu, six galettes
-            spéciales, dont une végétarienne et une au saumon fumé, qui côtoient
-            les grands classiques. Plusieurs fois par mois, une galette et une
-            crêpe font leu
-          </h3>
-        </div>
-        <div className="flex flex-col w-1/3 items-center justify-center m-5 gap-3">
-          <p className={`${California_Paradise.className}  lg:text-7xl text-5xl `}>03</p>
-          <h2 className="lg:text-4xl text-2xl font-bold">Evènement</h2>
-          <h3 className="text-center">
-            Marie cuisine des ingrédients frais. Au menu, six galettes
-            spéciales, dont une végétarienne et une au saumon fumé, qui côtoient
-            les grands classiques. Plusieurs fois par mois, une galette et une
-            crêpe font leu
-          </h3>
-        </div>
+        {[
+          {
+            num: "01",
+            title: "Ingrédients frais",
+            text: "Marie cuisine des ingrédients frais. Au menu, six galettes spéciales, dont une végétarienne et une au saumon fumé, qui côtoient les grands classiques.",
+          },
+          {
+            num: "02",
+            title: "Spécialité du chef",
+            text: "Marie cuisine des ingrédients frais. Au menu, six galettes spéciales, dont une végétarienne et une au saumon fumé, qui côtoient les grands classiques.",
+          },
+          {
+            num: "03",
+            title: "Événements",
+            text: "Marie cuisine des ingrédients frais. Au menu, six galettes spéciales, dont une végétarienne et une au saumon fumé, qui côtoient les grands classiques.",
+          },
+        ].map(({ num, title, text }) => (
+          <div
+            key={num}
+            className="flex flex-col w-full md:w-1/3 items-center justify-center m-5 gap-3 text-center"
+          >
+            <p className={`${California_Paradise.className} text-7xl`}>{num}</p>
+            <h2 className="text-2xl md:text-4xl font-bold">{title}</h2>
+            <h3 className="text-sm md:text-base">{text}</h3>
+          </div>
+        ))}
       </section>
       <section
-        className={`${HelveticaNeue.className}  h-screen w-full flex items-center justify-center gap-5`}
+        className={`${HelveticaNeue.className}  h-full lg:h-screen w-full flex items-center justify-center gap-5 lg:flex-row flex-col`}
       >
-        <div className="w-1/2 flex items-center justify-center relative">
-          <div className="flex h-130 w-100 overflow-hidden relative">
+        <div className="lg:w-1/2 w-auto flex items-center justify-center relative ">
+          <div className="flex h-50 w-75 lg:h-130 lg:w-100 overflow-hidden relative">
             <Image
               alt="restaurant"
               fill={true}
-              src={
-                "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              }
-              className="object-cover"
+              src={"/devanture.webp"}
+              className="object-cover bg-center"
             />
           </div>
-          <div className="flex h-70 w-50 overflow-hidden absolute bottom-10 right-10">
+          <div className="flex h-20 w-20 lg:h-70 lg:w-50 overflow-hidden absolute -bottom-10 right-5 lg:bottom-10 lg:right-10">
             <Image
               alt="restaurant"
               fill={true}
@@ -192,7 +189,7 @@ const headerRef = useRef(null)
             />
           </div>
         </div>
-        <div className="w-1/2 ">
+        <div className="lg:w-1/2 w-auto p-5 lg:p-0">
           <h2 className="font-bold text-2xl">Bienvenue à Pepouze</h2>
           <p>
             Grâce à une isolation phonique soignée et un éclairage modulable,
@@ -210,24 +207,22 @@ const headerRef = useRef(null)
           Nos Spécialités
         </h1>
         <h2>Choisis par nos soins</h2>
-        <div className="flex gap-5">
+        <div className="flex gap-5 lg:flex-row flex-col">
           <div className="relative">
             <p className="z-20 text-white text-2xl absolute text-center w-full h-50 flex items-center justify-center">
               Galette{" "}
             </p>
-            <p className="z-20 text-white absolute text-center w-full h-50 flex items-center justify-center bottom-0">
+            <p className="z-20 text-white absolute text-center w-full h-25 lg:h-50 flex items-center justify-center bottom-0">
               pommes de terre, fromage raclette, oignons confits, lardons fumés,
               crème
             </p>
             <div className="z-10 bg-linear-to-t from-black to-transparent opacity-90 absolute h-full w-full"></div>
-            <div className="h-75 w-100 relative overflow-hidden">
+            <div className="h-50 w-75 lg:h-75 lg:w-100 relative overflow-hidden">
               <Image
                 alt="restaurant2"
                 fill={true}
                 className="object-cover"
-                src={
-                  "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                }
+                src={"/galette1.jpg"}
               ></Image>
             </div>
           </div>
@@ -235,41 +230,37 @@ const headerRef = useRef(null)
             <p className="z-20 text-white text-2xl absolute text-center w-full h-50 flex items-center justify-center">
               Galette{" "}
             </p>
-            <p className="z-20 text-white absolute text-center w-full h-50 flex items-center justify-center bottom-0">
+            <p className="z-20 text-white absolute text-center w-full h-25 lg:h-50 flex items-center justify-center bottom-0">
               pommes de terre, fromage raclette, oignons confits, lardons fumés,
               crème
             </p>
             <div className="z-10 bg-linear-to-t from-black to-transparent opacity-90 absolute h-full w-full"></div>
-            <div className="h-75 w-100 relative overflow-hidden">
+            <div className="h-50 w-75 lg:h-75 lg:w-100 relative overflow-hidden">
               <Image
                 alt="restaurant2"
                 fill={true}
                 className="object-cover"
-                src={
-                  "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                }
+                src={"/galette2.jpg"}
               ></Image>
             </div>
           </div>
         </div>
-        <div className="flex gap-5 mt-5">
+        <div className="flex gap-5 mt-5 lg:flex-row flex-col">
           <div className="relative">
             <p className="z-20 text-white text-2xl absolute text-center w-full h-50 flex items-center justify-center">
               Galette{" "}
             </p>
-            <p className="z-20 text-white absolute text-center w-full h-50 flex items-center justify-center bottom-0">
+            <p className="z-20 text-white absolute text-center w-full h-25 lg:h-50 flex items-center justify-center bottom-0">
               pommes de terre, fromage raclette, oignons confits, lardons fumés,
               crème
             </p>
             <div className="z-10 bg-linear-to-t from-black to-transparent opacity-90 absolute h-full w-full"></div>
-            <div className="h-75 w-100 relative overflow-hidden">
+            <div className="h-50 w-75 lg:h-75 lg:w-100 relative overflow-hidden">
               <Image
                 alt="restaurant2"
                 fill={true}
                 className="object-cover"
-                src={
-                  "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                }
+                src={"/galette3.jpg"}
               ></Image>
             </div>
           </div>
@@ -277,26 +268,24 @@ const headerRef = useRef(null)
             <p className="z-20 text-white text-2xl absolute text-center w-full h-50 flex items-center justify-center">
               Galette{" "}
             </p>
-            <p className="z-20 text-white absolute text-center w-full h-50 flex items-center justify-center bottom-0">
+            <p className="z-20 text-white absolute text-center w-full h-25 lg:h-50 flex items-center justify-center bottom-0">
               pommes de terre, fromage raclette, oignons confits, lardons fumés,
               crème
             </p>
             <div className="z-10 bg-linear-to-t from-black to-transparent opacity-90 absolute h-full w-full"></div>
-            <div className="h-75 w-100 relative overflow-hidden">
+            <div className="h-50 w-75 lg:h-75 lg:w-100 relative overflow-hidden">
               <Image
                 alt="restaurant2"
                 fill={true}
                 className="object-cover"
-                src={
-                  "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                }
+                src={"/galette4.webp"}
               ></Image>
             </div>
           </div>
         </div>
       </section>
       <section
-        className={`${HelveticaNeue.className} menu  h-full w-full flex items-center justify-center flex-col`}
+        className={`${HelveticaNeue.className} menu mb-10 lg:mb-0 h-full w-full flex items-center justify-center flex-col`}
       >
         <h1 className={`${StardomRegular.className} text-4xl`}>Notre Menu</h1>
         <div className=" justify-center items-center w-full hidden">
@@ -349,9 +338,7 @@ const headerRef = useRef(null)
                 alt="restaurant2"
                 fill={true}
                 className="object-cover"
-                src={
-                  "https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                }
+                src={"/galette5.webp"}
               ></Image>
             </div>
           </div>
@@ -363,9 +350,7 @@ const headerRef = useRef(null)
                 alt="restaurant2"
                 fill={true}
                 className="object-cover"
-                src={
-                  "https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                }
+                src={"/galette6.webp"}
               ></Image>
             </div>
           </div>
@@ -417,8 +402,8 @@ const headerRef = useRef(null)
           </div>
         </div>
 
-        <div className="flex justify-center items-center w-full">
-          <div className="menu_gauche w-1/2 ml-10">
+        <div className="flex justify-center items-center w-full flex-col lg:flex-row ">
+          <div className="menu_gauche lg:w-1/2 w-auto ml-10">
             <h2 className="text-2xl font-bold">Galette de sarrasin</h2>
             <p className="italic">
               Toutes nos galettes sont produites à partir de la farine de
@@ -467,33 +452,29 @@ const headerRef = useRef(null)
               </li>
             </ul>
           </div>
-          <div className="w-1/2 h-100 overflow-hidden mr-10 flex items-center justify-center">
-            <div className="w-70/100 h-100 relative">
+          <div className="w-auto h-60 lg:w-1/2 lg:h-100 overflow-hidden lg:mr-10 flex items-center justify-center">
+            <div className="h-50 w-75 lg:w-70/100 lg:h-100 relative">
               <Image
                 alt="restaurant2"
                 fill={true}
                 className="object-cover"
-                src={
-                  "https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                }
+                src={"/galette5.webp"}
               ></Image>
             </div>
           </div>
         </div>
-        <div className=" justify-center items-center w-full flex">
-          <div className="w-1/2 h-100 overflow-hidden mr-10 flex items-center justify-center">
-            <div className="w-70/100 h-100 relative">
+        <div className="flex justify-center items-center w-full flex-col-reverse lg:flex-row">
+          <div className="w-auto h-60 lg:w-1/2 lg:h-100 overflow-hidden lg:mr-10 flex items-center justify-center">
+            <div className="h-50 w-75 lg:w-70/100 lg:h-100 relative">
               <Image
                 alt="restaurant2"
                 fill={true}
                 className="object-cover"
-                src={
-                  "https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                }
+                src={"/galette6.webp"}
               ></Image>
             </div>
           </div>
-          <div className="menu_droit w-1/2 ml-10">
+          <div className="menu_droit lg:w-1/2 w-auto ml-10">
             <p className="text-xl">Les spéciales:</p>
             <ul className="flex flex-col gap-3">
               <li className="flex justify-between items-center border-b p-3">
@@ -585,7 +566,7 @@ const headerRef = useRef(null)
         <div className="flex flex-col items-center justify-center mt-auto mb-auto relative">
           <div className="text-center mt-16 relative flex z-1">
             <a
-              href="#menu"
+              href="/menu"
               className="block p-[8px_22px] bg-transparent border-2 border-black rounded-4xl text-black text-xs font-bold uppercase decoration-0 cursor-pointer transition-all duration-300 ease relative overflow-hidden before:content-[''] before:absolute before:inset-0 before:bg-black before:scale-x-0 before:origin-left before:transition-transform before:duration-350 before:ease before:-z-1 hover:text-white hover:before:scale-x-100"
             >
               Voir tout le menu
@@ -594,7 +575,7 @@ const headerRef = useRef(null)
         </div>
       </section>
       <section
-        className={`${HelveticaNeue.className}  h-screen w-full flex items-center justify-center gap-5`}
+        className={`${HelveticaNeue.className}  h-full lg:h-screen w-full flex items-center justify-center gap-5 flex-col lg:flex-row`}
       >
         {" "}
         <div className="w-1/2 text-center flex flex-col items-center justify-center">
@@ -606,8 +587,8 @@ const headerRef = useRef(null)
             travailler dans plusieurs établissements rennais.{" "}
           </p>
         </div>
-        <div className="w-1/2 flex items-center justify-center relative">
-          <div className="flex h-130 w-100 overflow-hidden relative">
+        <div className="w-auto lg:w-1/2 flex items-center justify-center relative">
+          <div className="flex h-100 w-75 lg:h-130 lg:w-100 overflow-hidden relative">
             <Image
               alt="restaurant"
               fill={true}
@@ -618,15 +599,15 @@ const headerRef = useRef(null)
         </div>
       </section>
       <section
-        className={`${HelveticaNeue.className} FAQ  h-screen flex w-full justify-center items-center flex-col`}
+        className={`${HelveticaNeue.className} FAQ pt-10 pb-10  h-full lg:h-screen flex w-full justify-center items-center flex-col`}
       >
-        <div className="flex w-full">
-          <div className="w-1/2 flex items-center justify-center">
+        <div className="flex w-full flex-col-reverse lg:flex-row ">
+          <div className="w-auto p-5 lg:p-0 lg:w-1/2 flex items-center justify-center">
             {" "}
             <FAQ />
           </div>
 
-          <div className="w-1/2">
+          <div className="w-auto lg:w-1/2">
             <h1 className={`${StardomRegular.className} text-4xl`}>FAQ</h1>
             <h3>Foire aux questions</h3>
             <p>On a beaucoup de question</p>
@@ -634,10 +615,12 @@ const headerRef = useRef(null)
         </div>
       </section>
       <section
-        className={`${HelveticaNeue.className} avis_client  h-screen w-full flex flex-col justify-center items-center gap-3`}
+        className={`${HelveticaNeue.className} avis_client pt-10 pb-10 h-full lg:h-screen w-full flex flex-col justify-center items-center gap-3`}
       >
-        <h1 className={`${StardomRegular.className} text-4xl mb-20`}>Les avis de nos clients</h1>
-        <div className="flex w-full items-center justify-center">
+        <h1 className={`${StardomRegular.className} text-4xl mb-20`}>
+          Les avis de nos clients
+        </h1>
+        <div className="flex w-full items-center justify-center flex-col lg:flex-row ">
           <div className="flex flex-col items-center justify-center w-75 ">
             <div className="flex items-center justify-center">
               <Star fill="#c39d63" color="#c39d63" />
@@ -711,114 +694,18 @@ const headerRef = useRef(null)
           </div>
         </div>
       </section>
-    <ReservationSection/>
-      <section id="lieu" className="Localisation  h-screen flex items-center justify-center flex-col gap-3">
+      <ReservationSection />
+      <section
+        id="lieu"
+        className="Localisation  h-screen flex items-center justify-center flex-col gap-3"
+      >
         <h1 className="text-xl">Nous sommes ici</h1>
-        <div className="h-100 w-200 rounded-2xl overflow-hidden shadow-2xl">
-          <iframe
-            className="w-full h-full object-cover rounded-xl"
-            width="1000"
-            height="300"
-            allow="geolocation"
-            src="https://api.maptiler.com/maps/019a29ee-fc6c-7214-992b-1d1cfeb51a7d/?key=OVKTtEmd6oXqJWFoFhnn#16/47.9783/-1.718"
-          ></iframe>
-        </div>
+        <div className="group h-75 w-75 lg:h-100 lg:w-200 rounded-2xl overflow-hidden shadow-2xl relative">
+       <Map/>
+     
+       </div>
       </section>
-      <footer className="w-full h-screen bg-(--bg-secondery-color) flex flex-col items-center justify-center text-white">
-        <div className="flex flex-col items-center justify-center w-full mb-auto mt-auto">
-          {" "}
-          <h1
-            className={`${California_Paradise.className} text-white text-8xl text-center`}
-          >
-            Pépouze
-          </h1>
-          <h3>Galettes, Crêpes & Chill</h3>
-          <ul className="flex items-center justify-around w-50/100 mt-5">
-            <li>
-              <AnimatedLink
-                color="white"
-                target_on="_blank"
-                rel="noopener noreferrer"
-                href="https://www.instagram.com/thefabstudio2/"
-              >
-                Maison
-              </AnimatedLink>
-            </li>
-            <li>
-              <AnimatedLink
-                color="white"
-                target_on="_blank"
-                rel="noopener noreferrer"
-                href="https://www.instagram.com/thefabstudio2/"
-              >
-                Notre histoire
-              </AnimatedLink>
-            </li>
-            <li>
-              <AnimatedLink
-                color="white"
-                target_on="_blank"
-                rel="noopener noreferrer"
-                href="https://www.instagram.com/thefabstudio2/"
-              >
-                Menu
-              </AnimatedLink>
-            </li>
-            <li>
-              <AnimatedLink
-                color="white"
-                target_on="_blank"
-                rel="noopener noreferrer"
-                href="https://www.instagram.com/thefabstudio2/"
-              >
-                Réservation
-              </AnimatedLink>
-            </li>
-            <li>
-              <AnimatedLink
-                color="white"
-                target_on="_blank"
-                rel="noopener noreferrer"
-                href="https://www.instagram.com/thefabstudio2/"
-              >
-                Lieu
-              </AnimatedLink>
-            </li>
-          </ul>
-        </div>
-        <div className="w-90/100 bg-gray-50 rounded-2xl h-[0.1px] mb-auto"></div>
-        <div className="flex justify-center items-center ">
-          <div className="flex flex-col w-1/3 m-5 gap-3">
-            <h2>Adresse</h2>
-            <p>12 rue du Point du Jour, Laillé, 35890</p>
-            <ul className="flex">
-              <li className="flex items-center justify-center p-2 bg-white rounded-full text-black"><FaInstagram /></li>
-              <li className="flex items-center justify-center p-2 bg-white rounded-full text-black"><FaFacebookSquare /></li>
-            </ul>
-          </div>
-          <div className="flex flex-col w-1/3 m-5 gap-3">
-            <h2>Contact</h2>
-            <p className="flex"><Phone/>06.16.27.34.22</p>
-           
-          </div>
-          <div className="flex flex-col w-1/3 m-5 gap-3">
-            <h2>Horaire</h2>
-            <p>Dimanche lundi, mardi : fermé</p>
-            <p>Mercredi – Jeudi : 12h – 14h </p>
-            <p>Vendredi - Samedi:  12h – 14h/ 19h – 21h00</p>
-            <button></button>
-          </div>
-        </div>
-        <div className="w-90/100 bg-gray-50 rounded-2xl h-[0.1px] mb-auto"></div>
-        <div className="flex justify-between w-full mb-5">
-          <p className="ml-5">
-            © 2026 Pépouze la crêperie du 12. Tous droits réservés
-          </p>
-          <p className="mr-5">
-            Conditions générales & Politique de confidentialité
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }

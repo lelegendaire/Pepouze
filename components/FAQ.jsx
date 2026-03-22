@@ -15,45 +15,39 @@ export function FAQ() {
       
     >
       <AccordionItem value="shipping">
-        <AccordionTrigger className={"text-2xl"}>What are your shipping options?</AccordionTrigger>
+        <AccordionTrigger className={"text-2xl"}>Proposez-vous des options végétariennes?</AccordionTrigger>
         <AccordionContent className={"text-xl"}>
-          We offer standard (5-7 days), express (2-3 days), and overnight
-          shipping. Free shipping on international orders.
+         Oui, nous proposons des galettes végétariennes, et certaines recettes évoluent selon les produits de saison.
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="returns">
-        <AccordionTrigger className={"text-2xl"}>What is your return policy?</AccordionTrigger>
+        <AccordionTrigger className={"text-2xl"}>Vos galettes sont-elles sans gluten?</AccordionTrigger>
         <AccordionContent className={"text-xl"}>
-          Returns accepted within 30 days. Items must be unused and in original
-          packaging. Refunds processed within 5-7 business days.
+         Nos galettes sont réalisées à base de farine de blé noir (sarrasin), naturellement sans gluten.
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="support">
-        <AccordionTrigger className={"text-2xl"}>How can I contact customer support?</AccordionTrigger>
+        <AccordionTrigger className={"text-2xl"}>D’où viennent vos ingrédients?</AccordionTrigger>
         <AccordionContent className={"text-xl"}>
-          Reach us via email, live chat, or phone. We respond within 24 hours
-          during business days.
+          Nous utilisons des ingrédients frais et sélectionnés avec soin, avec une farine de blé noir 100 % IGP bretonne et une cuisine entièrement faite maison.
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="support1">
-        <AccordionTrigger className={"text-2xl"}>How can I contact customer support?</AccordionTrigger>
+        <AccordionTrigger className={"text-2xl"}>Peut-on réserver une table en ligne?</AccordionTrigger>
         <AccordionContent className={"text-xl"}>
-          Reach us via email, live chat, or phone. We respond within 24 hours
-          during business days.
+          Oui, vous pouvez réserver via nos réseaux sociaux (Instagram ou Facebook) ou directement par téléphone et récemment sur notre site internet
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="support2">
-        <AccordionTrigger className={"text-2xl"}>How can I contact customer support?</AccordionTrigger>
+        <AccordionTrigger className={"text-2xl"}>Faites-vous des plats à emporter?</AccordionTrigger>
         <AccordionContent className={"text-xl"}>
-          Reach us via email, live chat, or phone. We respond within 24 hours
-          during business days.
+          Oui, certaines galettes et crêpes peuvent être proposées à emporter selon l’affluence.
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="support3">
-        <AccordionTrigger className={"text-2xl"}>How can I contact customer support?</AccordionTrigger>
+        <AccordionTrigger className={"text-2xl"}>Quels sont vos horaires d’ouverture?</AccordionTrigger>
         <AccordionContent className={"text-xl"}>
-          Reach us via email, live chat, or phone. We respond within 24 hours
-          during business days.
+          Nous sommes ouverts : du mercredi au samedi le midi et le vendredi & samedi soir. Les horaires peuvent varier, pensez à vérifier avant de venir.
         </AccordionContent>
       </AccordionItem>
     </Accordion>
