@@ -202,7 +202,7 @@ export default function Home() {
                 fill={true}
                 className="object-cover"
                 src={
-                  "https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  "/galette5.webp"
                 }
               ></Image>
             </div>
@@ -216,7 +216,7 @@ export default function Home() {
                 fill={true}
                 className="object-cover"
                 src={
-                  "https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  "/galette6.webp"
                 }
               ></Image>
             </div>
@@ -362,7 +362,7 @@ export default function Home() {
                 fill={true}
                 className="object-cover"
                 src={
-                  "https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  "/crepe1.jpg"
                 }
               ></Image>
             </div>
@@ -376,7 +376,7 @@ export default function Home() {
                 fill={true}
                 className="object-cover"
                 src={
-                  "https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  "/crepe1.jpg"
                 }
               ></Image>
             </div>
@@ -428,16 +428,7 @@ export default function Home() {
             </ul>
           </div>
         </div>
-         <div className="flex flex-col items-center justify-center mt-auto mb-auto relative">
-          <div className="text-center mt-16 relative flex z-1">
-            <a
-              href="#menu"
-              className="block p-[8px_22px] bg-transparent border-2 border-black rounded-4xl text-black text-xs font-bold uppercase decoration-0 cursor-pointer transition-all duration-300 ease relative overflow-hidden before:content-[''] before:absolute before:inset-0 before:bg-black before:scale-x-0 before:origin-left before:transition-transform before:duration-350 before:ease before:-z-1 hover:text-white hover:before:scale-x-100"
-            >
-              Voir tout le menu
-            </a>
-          </div>
-        </div> 
+       
       </section>
       
       

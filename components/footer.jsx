@@ -24,7 +24,7 @@ export default function Footer() {
         {[
           { label: "Maison", href: "#" },
           { label: "Notre histoire", href: "#notre-histoire" },
-          { label: "Menu", href: "#menu" },
+          { label: "Menu", href: "/menu" },
           { label: "Réservation", href: "#reservation" },
           { label: "Lieu", href: "#localisation" },
         ].map(({ label, href }) => (
@@ -57,11 +57,11 @@ export default function Footer() {
         Laillé, 35890
       </p>
       <div className="flex gap-2 mt-1">
-        <a href="#" aria-label="Instagram"
+        <a href="https://www.instagram.com/pepouze_la_creperie_du_12/" aria-label="Instagram"
           className="flex items-center justify-center w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors">
           <FaInstagram size={14} />
         </a>
-        <a href="#" aria-label="Facebook"
+        <a href="https://www.facebook.com/p/P%C3%A9pouze-La-Cr%C3%AAperie-du-12-61581798668397/" aria-label="Facebook"
           className="flex items-center justify-center w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors">
           <FaFacebookSquare size={14} />
         </a>

@@ -147,13 +147,13 @@ export default function Home() {
           },
           {
             num: "02",
-            title: "Spécialité du chef",
-            text: "Marie cuisine des ingrédients frais. Au menu, six galettes spéciales, dont une végétarienne et une au saumon fumé, qui côtoient les grands classiques.",
+            title: "Spécialité du fait maison",
+            text: "Tout est fait maison : les galettes et les crêpes, bien sûr, mais aussi l’ensemble des garnitures. Le caramel au beurre salé et la ganache chocolat sont préparés sur place, tout comme les crèmes d’amande et de coco.",
           },
           {
             num: "03",
-            title: "Événements",
-            text: "Marie cuisine des ingrédients frais. Au menu, six galettes spéciales, dont une végétarienne et une au saumon fumé, qui côtoient les grands classiques.",
+            title: "Convivialité",
+            text: "L’ambiance est à l’image du nom : détendue et conviviale. On peut aussi bien prendre son temps pour papoter entre amis que déjeuner sur le pouce en prenant la formule rapide le midi. Un endroit tranquille, où simplicité rime avec qualité !",
           },
         ].map(({ num, title, text }) => (
           <div
@@ -183,7 +183,7 @@ export default function Home() {
               alt="restaurant"
               fill={true}
               src={
-                "/galette7.webp"
+                "/galette3.jpg"
               }
               className="object-cover"
             />
@@ -210,7 +210,7 @@ export default function Home() {
         <div className="flex gap-5 lg:flex-row flex-col">
           <div className="relative">
             <p className="z-20 text-white text-2xl absolute text-center w-full h-50 flex items-center justify-center">
-              Galette{" "}
+              La Rouesnais{" "}
             </p>
             <p className="z-20 text-white absolute text-center w-full h-25 lg:h-50 flex items-center justify-center bottom-0">
               pommes de terre, fromage raclette, oignons confits, lardons fumés,
@@ -228,11 +228,10 @@ export default function Home() {
           </div>
           <div className="relative">
             <p className="z-20 text-white text-2xl absolute text-center w-full h-50 flex items-center justify-center">
-              Galette{" "}
+              La Margatière{" "}
             </p>
             <p className="z-20 text-white absolute text-center w-full h-25 lg:h-50 flex items-center justify-center bottom-0">
-              pommes de terre, fromage raclette, oignons confits, lardons fumés,
-              crème
+              pommes, andouille de Guéméné, crème moutarde
             </p>
             <div className="z-10 bg-linear-to-t from-black to-transparent opacity-90 absolute h-full w-full"></div>
             <div className="h-50 w-75 lg:h-75 lg:w-100 relative overflow-hidden">
@@ -248,11 +247,10 @@ export default function Home() {
         <div className="flex gap-5 mt-5 lg:flex-row flex-col">
           <div className="relative">
             <p className="z-20 text-white text-2xl absolute text-center w-full h-50 flex items-center justify-center">
-              Galette{" "}
+              La Feutelais{" "}
             </p>
             <p className="z-20 text-white absolute text-center w-full h-25 lg:h-50 flex items-center justify-center bottom-0">
-              pommes de terre, fromage raclette, oignons confits, lardons fumés,
-              crème
+              pommes de terre, oignons confits, comté AOP, jambon sec
             </p>
             <div className="z-10 bg-linear-to-t from-black to-transparent opacity-90 absolute h-full w-full"></div>
             <div className="h-50 w-75 lg:h-75 lg:w-100 relative overflow-hidden">
@@ -266,11 +264,10 @@ export default function Home() {
           </div>
           <div className="relative">
             <p className="z-20 text-white text-2xl absolute text-center w-full h-50 flex items-center justify-center">
-              Galette{" "}
+              La Bezirais{" "}
             </p>
             <p className="z-20 text-white absolute text-center w-full h-25 lg:h-50 flex items-center justify-center bottom-0">
-              pommes de terre, fromage raclette, oignons confits, lardons fumés,
-              crème
+              fromage, saumon fumé, crème fraîche, ciboulette, citron
             </p>
             <div className="z-10 bg-linear-to-t from-black to-transparent opacity-90 absolute h-full w-full"></div>
             <div className="h-50 w-75 lg:h-75 lg:w-100 relative overflow-hidden">
@@ -278,7 +275,7 @@ export default function Home() {
                 alt="restaurant2"
                 fill={true}
                 className="object-cover"
-                src={"/galette4.webp"}
+                src={"/galette6.webp"}
               ></Image>
             </div>
           </div>
@@ -610,7 +607,9 @@ export default function Home() {
           <div className="w-auto lg:w-1/2">
             <h1 className={`${StardomRegular.className} text-4xl`}>FAQ</h1>
             <h3>Foire aux questions</h3>
-            <p>On a beaucoup de question</p>
+            <p>Des questions ?
+On vous répond, simplement.
+Comme à la maison… mais en mieux</p>
           </div>
         </div>
       </section>
