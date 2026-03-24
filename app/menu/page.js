@@ -57,7 +57,7 @@ export default function Home() {
                       color="white"
                       
                       rel="noopener noreferrer"
-                      href="#"
+                      href="/"
                     >
                       Maison
                     </AnimatedLink>
@@ -67,7 +67,7 @@ export default function Home() {
                       color="white"
                       
                       rel="noopener noreferrer"
-                      href="#histoire"
+                      href="/#histoire"
                     >
                       Notre histoire
                     </AnimatedLink>
@@ -97,7 +97,7 @@ export default function Home() {
                       color="white"
                       
                       rel="noopener noreferrer"
-                      href="#lieu"
+                      href="/#lieu"
                     >
                       Lieu
                     </AnimatedLink>
@@ -131,7 +131,7 @@ export default function Home() {
     
                 <p className="flex gap-2 mr-2 mb-2 text-xs lg:text-base items-center justify-center">
                   <Phone size={"20"} className="scale-50 lg:scale-100 left-2 lg:left-0 relative" />
-                  +06 16 27 34 22
+                  06 16 27 34 22
                 </p>
               </div>
             </div>
@@ -296,20 +296,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="menu_droit w-1/2 ml-10 hidden">
-          <h2 className="text-xl font-bold">Les crêpes du moments</h2>
-          <p className="text-[14px]">Formules:</p>
-          <ul className="text-[14px]">
-            <li>
-              Rapides (uniquement le midi): galette complète, crêpe beurre
-              sucre, bol de salade{" "}
-            </li>
-            <li>
-              Enfant (jusqu'à 12 ans): galette jambon fromage, crêpe chocolat,
-              verre de jus de pomme ou sirop à l'eau
-            </li>
-          </ul>
-        </div>
+       
        
          <div className=" justify-center items-center w-full flex">
           <div className="menu_droit w-1/2 ml-10">
@@ -427,6 +414,19 @@ export default function Home() {
               </li>
             </ul>
           </div>
+        </div>
+         <div className="menu_droit w-1/2 ml-10 flex flex-col mt-5">
+          <p className="text-xl">Formules:</p>
+          <ul className="text-base border p-5 border-dashed">
+            <li>
+              Rapides (uniquement le midi): galette complète, crêpe beurre
+              sucre, bol de salade{" "}
+            </li>
+            <li>
+              Enfant (jusqu'à 12 ans): galette jambon fromage, crêpe chocolat,
+              verre de jus de pomme ou sirop à l'eau
+            </li>
+          </ul>
         </div>
        
       </section>

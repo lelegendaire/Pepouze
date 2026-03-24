@@ -2,7 +2,7 @@
 import { useEffect, useRef } from "react"
 import * as maptilersdk from "@maptiler/sdk"
 import "@maptiler/sdk/dist/maptiler-sdk.css"
-
+import { Plus,Minus } from "lucide-react"
 export default function Map() {
   const mapContainer = useRef(null)
   const map = useRef(null)
@@ -168,14 +168,14 @@ map.current.on("load", () => {
           className="w-10 h-10 bg-white text-[#6d111c] rounded-xl shadow-lg flex items-center justify-center text-xl font-light hover:bg-[#6d111c] hover:text-white transition-all duration-200 select-none"
           aria-label="Zoom in"
         >
-          +
+          <Plus></Plus>
         </button>
         <button
           onClick={zoomOut}
           className="w-10 h-10 bg-white text-[#6d111c] rounded-xl shadow-lg flex items-center justify-center text-xl font-light hover:bg-[#6d111c] hover:text-white transition-all duration-200 select-none"
           aria-label="Zoom out"
         >
-          −
+          <Minus/>
         </button>
       </div>
 

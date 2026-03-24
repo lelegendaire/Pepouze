@@ -23,10 +23,10 @@ export default function Footer() {
       <ul className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 lg:gap-x-12">
         {[
           { label: "Maison", href: "#" },
-          { label: "Notre histoire", href: "#notre-histoire" },
+          { label: "Notre histoire", href: "#histoire" },
           { label: "Menu", href: "/menu" },
           { label: "Réservation", href: "#reservation" },
-          { label: "Lieu", href: "#localisation" },
+          { label: "Lieu", href: "#lieu" },
         ].map(({ label, href }) => (
           <li key={label}>
             <a href={href}

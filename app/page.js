@@ -130,7 +130,7 @@ export default function Home() {
                 size={"20"}
                 className="scale-50 lg:scale-100 left-2 lg:left-0 relative"
               />
-              +06 16 27 34 22
+              06 16 27 34 22
             </p>
           </div>
         </div>
@@ -547,7 +547,6 @@ export default function Home() {
           </div>
         </div>
         <div className="menu_droit w-1/2 ml-10 hidden">
-          <h2 className="text-xl font-bold">Les crêpes du moments</h2>
           <p className="text-[14px]">Formules:</p>
           <ul className="text-[14px]">
             <li>

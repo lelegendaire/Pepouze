@@ -8,10 +8,10 @@ export default function MobileMenu() {
 
   const links = [
     { label: "Maison", href: "#" },
-    { label: "Notre histoire", href: "#notre-histoire" },
+    { label: "Notre histoire", href: "#histoire" },
     { label: "Menu", href: "#menu" },
     { label: "Réservation", href: "#reservation" },
-    { label: "Lieu", href: "#localisation" },
+    { label: "Lieu", href: "#lieu" },
   ]
 
   return (

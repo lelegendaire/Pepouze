@@ -118,8 +118,11 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 body{
-  scroll-behavior: smooth;
+  
   padding: 0;
   margin: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
