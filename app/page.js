@@ -9,6 +9,7 @@ import { useState, useEffect, useRef } from "react";
 import ReservationSection from "@/components/reservation";
 import Footer from "@/components/footer";
 import MobileMenu from "@/components/MobileMenu";
+import Copy from "@/components/Copy";
 const Map = dynamic(() => import("@/components/Map"), { ssr: false })
 export default function Home() {
   const [offset, setOffset] = useState(0);
@@ -161,8 +162,8 @@ export default function Home() {
             className="flex flex-col w-full md:w-1/3 items-center justify-center m-5 gap-3 text-center"
           >
             <p className={`${California_Paradise.className} text-7xl`}>{num}</p>
-            <h2 className="text-2xl md:text-4xl font-bold">{title}</h2>
-            <h3 className="text-sm md:text-base">{text}</h3>
+           <h2 className="text-2xl md:text-4xl font-bold">{title}</h2>
+             <Copy><h3 className="text-sm md:text-base">{text}</h3></Copy>
           </div>
         ))}
       </section>
@@ -191,13 +192,13 @@ export default function Home() {
         </div>
         <div className="lg:w-1/2 w-auto p-5 lg:p-0">
           <h2 className="font-bold text-2xl">Bienvenue à Pepouze</h2>
-          <p>
+           <Copy><p>
             Grâce à une isolation phonique soignée et un éclairage modulable,
             l’ambiance est à l’image du nom : détendue et conviviale. On peut
             aussi bien prendre son temps pour papoter entre amis que déjeuner
             sur le pouce en prenant la formule rapide le midi. Un endroit
             tranquille, où simplicité rime avec qualité !{" "}
-          </p>
+          </p></Copy>
         </div>
       </section>
       <section
@@ -212,10 +213,10 @@ export default function Home() {
             <p className="z-20 text-white text-2xl absolute text-center w-full h-50 flex items-center justify-center">
               La Rouesnais{" "}
             </p>
-            <p className="z-20 text-white absolute text-center w-full h-25 lg:h-50 flex items-center justify-center bottom-0">
+             <Copy><p className="z-20 text-white absolute text-center w-full h-25 lg:h-50 flex items-center justify-center bottom-0">
               pommes de terre, fromage raclette, oignons confits, lardons fumés,
               crème
-            </p>
+            </p></Copy>
             <div className="z-10 bg-linear-to-t from-black to-transparent opacity-90 absolute h-full w-full"></div>
             <div className="h-50 w-75 lg:h-75 lg:w-100 relative overflow-hidden">
               <Image
@@ -230,9 +231,9 @@ export default function Home() {
             <p className="z-20 text-white text-2xl absolute text-center w-full h-50 flex items-center justify-center">
               La Margatière{" "}
             </p>
-            <p className="z-20 text-white absolute text-center w-full h-25 lg:h-50 flex items-center justify-center bottom-0">
+             <Copy><p className="z-20 text-white absolute text-center w-full h-25 lg:h-50 flex items-center justify-center bottom-0">
               pommes, andouille de Guéméné, crème moutarde
-            </p>
+            </p></Copy>
             <div className="z-10 bg-linear-to-t from-black to-transparent opacity-90 absolute h-full w-full"></div>
             <div className="h-50 w-75 lg:h-75 lg:w-100 relative overflow-hidden">
               <Image
@@ -249,9 +250,9 @@ export default function Home() {
             <p className="z-20 text-white text-2xl absolute text-center w-full h-50 flex items-center justify-center">
               La Feutelais{" "}
             </p>
-            <p className="z-20 text-white absolute text-center w-full h-25 lg:h-50 flex items-center justify-center bottom-0">
+             <Copy><p className="z-20 text-white absolute text-center w-full h-25 lg:h-50 flex items-center justify-center bottom-0">
               pommes de terre, oignons confits, comté AOP, jambon sec
-            </p>
+            </p></Copy>
             <div className="z-10 bg-linear-to-t from-black to-transparent opacity-90 absolute h-full w-full"></div>
             <div className="h-50 w-75 lg:h-75 lg:w-100 relative overflow-hidden">
               <Image
@@ -266,9 +267,9 @@ export default function Home() {
             <p className="z-20 text-white text-2xl absolute text-center w-full h-50 flex items-center justify-center">
               La Bezirais{" "}
             </p>
-            <p className="z-20 text-white absolute text-center w-full h-25 lg:h-50 flex items-center justify-center bottom-0">
+             <Copy><p className="z-20 text-white absolute text-center w-full h-25 lg:h-50 flex items-center justify-center bottom-0">
               fromage, saumon fumé, crème fraîche, ciboulette, citron
-            </p>
+            </p></Copy>
             <div className="z-10 bg-linear-to-t from-black to-transparent opacity-90 absolute h-full w-full"></div>
             <div className="h-50 w-75 lg:h-75 lg:w-100 relative overflow-hidden">
               <Image
@@ -576,12 +577,12 @@ export default function Home() {
         {" "}
         <div className="w-1/2 text-center flex flex-col items-center justify-center">
           <h2 className="font-bold text-2xl">Marie Marion</h2>
-          <p>
+           <Copy><p>
             Fille d’un formateur en cuisine et d’une psychologue, elle a grandi
             entourée de bons petits plats et d’odeurs gourmandes. Passionnée de
             chocolat, elle a suivi une formation d’artisan crêpier avant de
             travailler dans plusieurs établissements rennais.{" "}
-          </p>
+          </p></Copy>
         </div>
         <div className="w-auto lg:w-1/2 flex items-center justify-center relative">
           <div className="flex h-100 w-75 lg:h-130 lg:w-100 overflow-hidden relative">
@@ -606,9 +607,9 @@ export default function Home() {
           <div className="w-auto lg:w-1/2">
             <h1 className={`${StardomRegular.className} text-4xl`}>FAQ</h1>
             <h3>Foire aux questions</h3>
-            <p>Des questions ?
+             <Copy><p>Des questions ?
 On vous répond, simplement.
-Comme à la maison… mais en mieux</p>
+Comme à la maison… mais en mieux</p></Copy>
           </div>
         </div>
       </section>
