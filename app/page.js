@@ -10,7 +10,7 @@ import ReservationSection from "@/components/reservation";
 import Footer from "@/components/footer";
 import MobileMenu from "@/components/MobileMenu";
 import Copy from "@/components/Copy";
-const Map = dynamic(() => import("@/components/Map"), { ssr: false })
+const Map_create = dynamic(() => import("@/components/Map"), { ssr: false })
 export default function Home() {
   const [offset, setOffset] = useState(0);
   const headerRef = useRef(null);
@@ -700,7 +700,7 @@ Comme à la maison… mais en mieux</p></Copy>
       >
         <h1 className="text-xl">Nous sommes ici</h1>
         <div className="group h-75 w-75 lg:h-100 lg:w-200 rounded-2xl overflow-hidden shadow-2xl relative">
-       <Map/>
+       <Map_create/>
      
        </div>
       </section>
