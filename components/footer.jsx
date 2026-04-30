@@ -116,7 +116,7 @@ export default function Footer() {
     <p className="text-white/25 text-[0.65rem] tracking-wide">
       © 2026 Pépouze la crêperie du 12. Tous droits réservés
     </p>
-    <a href="#" className="text-white/25 hover:text-white/50 text-[0.65rem] tracking-wide transition-colors">
+    <a href="/cgu" className="text-white/25 hover:text-white/50 text-[0.65rem] tracking-wide transition-colors">
       Conditions générales & Politique de confidentialité
     </a>
   </div>

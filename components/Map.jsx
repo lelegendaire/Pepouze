@@ -11,11 +11,17 @@ export default function Map_create() {
   return (
     <div className="relative w-full h-full rounded-2xl overflow-hidden">
 <Card className="h-full p-0 overflow-hidden">
-      <Map center={[-1.718,47.9783]} zoom={18}>
-        <MapControls />
+<Map 
+  center={[-1.7185,47.9781]} 
+  zoom={18} 
+  styles={{
+    light: "https://tiles.openfreemap.org/styles/bright",
+    dark: "https://tiles.openfreemap.org/styles/liberty"
+  }}
+>        <MapControls />
         <MapMarker
-            longitude={-1.718}
-            latitude={47.9783}
+            longitude={-1.7185}
+            latitude={47.9781}
           >
             <MarkerContent>
               <div className="size-4 rounded-full bg-primary border-2 border-white shadow-lg" />

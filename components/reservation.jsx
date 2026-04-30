@@ -40,23 +40,39 @@ export default function ReservationSection() {
   const [calMonth, setCalMonth] = useState(new Date(today.getFullYear(), today.getMonth(), 1))
   const [status, setStatus] = useState(null)
   const [step, setStep] = useState(1) // 1: date+heure, 2: infos
-
+  const [creneauxOccupes, setCreneauxOccupes] = useState({}) // { "12:00": 2, "12:30": 3 }
+  const [loadingDispo, setLoadingDispo] = useState(false)
+  const MAX_PAR_CRENEAU = 3
   const handleChange = (e) => setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
 
   // Générer les jours du calendrier
-  const getDaysInMonth = () => {
-    const year = calMonth.getFullYear()
-    const month = calMonth.getMonth()
-    const firstDay = new Date(year, month, 1).getDay()
-    const daysInMonth = new Date(year, month + 1, 0).getDate()
-    // Décale pour commencer lundi
-    const startOffset = firstDay === 0 ? 6 : firstDay - 1
-    const days = []
-    for (let i = 0; i < startOffset; i++) days.push(null)
-    for (let i = 1; i <= daysInMonth; i++) days.push(new Date(year, month, i))
-    return days
+  const handleSelectDate = async (day) => {
+  setSelectedDate(day)
+  setSelectedHeure(null)
+  setCreneauxOccupes({})
+  setLoadingDispo(true)
+  try {
+    const res = await fetch(`/api/reservations/disponibilites?date=${day.toISOString()}`)
+    const data = await res.json()
+    setCreneauxOccupes(data)
+  } catch (e) {
+    console.error(e)
+  } finally {
+    setLoadingDispo(false)
   }
-
+}
+// ← Ajoute ça juste en dessous ↓
+const getDaysInMonth = () => {
+  const year = calMonth.getFullYear()
+  const month = calMonth.getMonth()
+  const firstDay = new Date(year, month, 1).getDay()
+  const daysInMonth = new Date(year, month + 1, 0).getDate()
+  const startOffset = firstDay === 0 ? 6 : firstDay - 1
+  const days = []
+  for (let i = 0; i < startOffset; i++) days.push(null)
+  for (let i = 1; i <= daysInMonth; i++) days.push(new Date(year, month, i))
+  return days
+}
   const creneaux = getCreneaux(selectedDate)
   const midiCreneaux = creneaux.filter(h => h.startsWith("12") || h.startsWith("13"))
   const soirCreneaux = creneaux.filter(h => h.startsWith("19") || h.startsWith("20"))
@@ -172,7 +188,7 @@ export default function ReservationSection() {
                         <button
                           key={i}
                           disabled={!ouvert || passe}
-                          onClick={() => { setSelectedDate(day); setSelectedHeure(null) }}
+                          onClick={() => handleSelectDate(day)}
                           className={`
                             aspect-square rounded-xl text-xs font-medium transition-all flex items-center justify-center relative
                             ${selected ? "bg-white text-black font-bold scale-105" : ""}
@@ -195,51 +211,104 @@ export default function ReservationSection() {
                   </p>
                 </div>
 
-                {/* Créneaux horaires */}
-                {selectedDate && (
-                  <div className="flex flex-col gap-4 border-t border-white/10 pt-6">
-                    <h2 className="text-sm font-bold flex items-center gap-2">
-                      <Clock size={16} className="opacity-60" />
-                      Choisissez un créneau
-                      <span className="text-white/40 font-normal text-xs">
-                        — {selectedDate.toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" })}
-                      </span>
-                    </h2>
+               {/* Créneaux horaires */}
+{selectedDate && (
+  <div className="flex flex-col gap-4 border-t border-white/10 pt-6">
+    <h2 className="text-sm font-bold flex items-center gap-2">
+      <Clock size={16} className="opacity-60" />
+      Choisissez un créneau
+      <span className="text-white/40 font-normal text-xs">
+        — {selectedDate.toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" })}
+      </span>
+    </h2>
 
-                    {creneaux.length === 0 ? (
-                      <p className="text-white/40 text-sm text-center py-4">😴 Fermé ce jour-là</p>
-                    ) : (
-                      <div className="flex flex-col gap-4">
-                        {midiCreneaux.length > 0 && (
-                          <div>
-                            <p className="text-[0.6rem] tracking-widest uppercase text-white/30 mb-2">Service du midi</p>
-                            <div className="flex flex-wrap gap-2">
-                              {midiCreneaux.map(h => (
-                                <button key={h} onClick={() => setSelectedHeure(h)}
-                                  className={`px-4 py-2 rounded-full text-xs font-bold border transition-all ${selectedHeure === h ? "bg-white text-black border-white" : "border-white/20 text-white/70 hover:border-white/50 hover:text-white"}`}>
-                                  {h}
-                                </button>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                        {soirCreneaux.length > 0 && (
-                          <div>
-                            <p className="text-[0.6rem] tracking-widest uppercase text-white/30 mb-2">Service du soir</p>
-                            <div className="flex flex-wrap gap-2">
-                              {soirCreneaux.map(h => (
-                                <button key={h} onClick={() => setSelectedHeure(h)}
-                                  className={`px-4 py-2 rounded-full text-xs font-bold border transition-all ${selectedHeure === h ? "bg-white text-black border-white" : "border-white/20 text-white/70 hover:border-white/50 hover:text-white"}`}>
-                                  {h}
-                                </button>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                      </div>
+    {loadingDispo ? (
+      <div className="flex justify-center py-4">
+        <div className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+      </div>
+    ) : creneaux.length === 0 ? (
+      <p className="text-white/40 text-sm text-center py-4">😴 Fermé ce jour-là</p>
+    ) : (
+      <div className="flex flex-col gap-4">
+        {midiCreneaux.length > 0 && (
+          <div>
+            <p className="text-[0.6rem] tracking-widest uppercase text-white/30 mb-2">Service du midi</p>
+            <div className="flex flex-wrap gap-2">
+              {midiCreneaux.map(h => {
+                const count = creneauxOccupes[h] || 0
+                const plein = count >= MAX_PAR_CRENEAU
+                const selected = selectedHeure === h
+                return (
+                  <button key={h}
+                    disabled={plein}
+                    onClick={() => setSelectedHeure(h)}
+                    title={plein ? "Créneau complet" : `${MAX_PAR_CRENEAU - count} place(s) restante(s)`}
+                    className={`
+                      relative px-4 py-2 rounded-full text-xs font-bold border transition-all
+                      ${selected ? "bg-white text-black border-white" : ""}
+                      ${!selected && !plein ? "border-white/20 text-white/70 hover:border-white/50 hover:text-white" : ""}
+                      ${plein ? "border-white/10 text-white/20 cursor-not-allowed line-through" : ""}
+                    `}>
+                    {h}
+                    {!plein && count > 0 && !selected && (
+                      <span className="absolute -top-1 -right-1 w-3 h-3 bg-orange-400 rounded-full text-[8px] flex items-center justify-center text-white font-bold">
+                        {MAX_PAR_CRENEAU - count}
+                      </span>
                     )}
-                  </div>
-                )}
+                    {plein && (
+                      <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-400 rounded-full" />
+                    )}
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+        )}
+
+        {soirCreneaux.length > 0 && (
+          <div>
+            <p className="text-[0.6rem] tracking-widest uppercase text-white/30 mb-2">Service du soir</p>
+            <div className="flex flex-wrap gap-2">
+              {soirCreneaux.map(h => {
+                const count = creneauxOccupes[h] || 0
+                const plein = count >= MAX_PAR_CRENEAU
+                const selected = selectedHeure === h
+                return (
+                  <button key={h}
+                    disabled={plein}
+                    onClick={() => setSelectedHeure(h)}
+                    title={plein ? "Créneau complet" : `${MAX_PAR_CRENEAU - count} place(s) restante(s)`}
+                    className={`
+                      relative px-4 py-2 rounded-full text-xs font-bold border transition-all
+                      ${selected ? "bg-white text-black border-white" : ""}
+                      ${!selected && !plein ? "border-white/20 text-white/70 hover:border-white/50 hover:text-white" : ""}
+                      ${plein ? "border-white/10 text-white/20 cursor-not-allowed line-through" : ""}
+                    `}>
+                    {h}
+                    {!plein && count > 0 && !selected && (
+                      <span className="absolute -top-1 -right-1 w-3 h-3 bg-orange-400 rounded-full text-[8px] flex items-center justify-center text-white font-bold">
+                        {MAX_PAR_CRENEAU - count}
+                      </span>
+                    )}
+                    {plein && (
+                      <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-400 rounded-full" />
+                    )}
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Légende */}
+        <div className="flex items-center gap-4 text-[0.6rem] text-white/25 mt-1">
+          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-orange-400" /> Places restantes</span>
+          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-red-400" /> Complet</span>
+        </div>
+      </div>
+    )}
+  </div>
+)}
 
                 {/* Nombre de personnes */}
                 {selectedHeure && (
