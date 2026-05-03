@@ -10,6 +10,7 @@ import ReservationSection from "@/components/reservation";
 import Footer from "@/components/footer";
 import MobileMenu from "@/components/MobileMenu";
 import Copy from "@/components/Copy";
+import Skiper49 from "@/components/galleriephoto";
 const Map_create = dynamic(() => import("@/components/Map"), { ssr: false })
 export default function Home() {
   const [offset, setOffset] = useState(0);
@@ -201,86 +202,20 @@ export default function Home() {
           </p></Copy>
         </div>
       </section>
+     
       <section
-        className={`${HelveticaNeue.className} Spécialité  h-full pt-10 pb-10 flex flex-col justify-center items-center`}
+        className={`${HelveticaNeue.className} Spécialité w-full h-full pt-10 pb-10 flex flex-col justify-center items-center`}
       >
         <h1 className={`${StardomRegular.className} text-4xl`}>
           Nos Spécialités
         </h1>
         <h2>Choisis par nos soins</h2>
-        <div className="flex gap-5 lg:flex-row flex-col">
-          <div className="relative">
-            <p className="z-20 text-white text-2xl absolute text-center w-full h-50 flex items-center justify-center">
-              La Rouesnais{" "}
-            </p>
-             <Copy><p className="z-20 text-white absolute text-center w-full h-25 lg:h-50 flex items-center justify-center bottom-0">
-              pommes de terre, fromage raclette, oignons confits, lardons fumés,
-              crème
-            </p></Copy>
-            <div className="z-10 bg-linear-to-t from-black to-transparent opacity-90 absolute h-full w-full"></div>
-            <div className="h-50 w-75 lg:h-75 lg:w-100 relative overflow-hidden">
-              <Image
-                alt="restaurant2"
-                fill={true}
-                className="object-cover"
-                src={"/galette1.jpg"}
-              ></Image>
-            </div>
-          </div>
-          <div className="relative">
-            <p className="z-20 text-white text-2xl absolute text-center w-full h-50 flex items-center justify-center">
-              La Margatière{" "}
-            </p>
-             <Copy><p className="z-20 text-white absolute text-center w-full h-25 lg:h-50 flex items-center justify-center bottom-0">
-              pommes, andouille de Guéméné, crème moutarde
-            </p></Copy>
-            <div className="z-10 bg-linear-to-t from-black to-transparent opacity-90 absolute h-full w-full"></div>
-            <div className="h-50 w-75 lg:h-75 lg:w-100 relative overflow-hidden">
-              <Image
-                alt="restaurant2"
-                fill={true}
-                className="object-cover"
-                src={"/galette2.jpg"}
-              ></Image>
-            </div>
-          </div>
+        <div className="h-[90vh] w-full flex items-center justify-center ">
+
+         <Skiper49/>
         </div>
-        <div className="flex gap-5 mt-5 lg:flex-row flex-col">
-          <div className="relative">
-            <p className="z-20 text-white text-2xl absolute text-center w-full h-50 flex items-center justify-center">
-              La Feutelais{" "}
-            </p>
-             <Copy><p className="z-20 text-white absolute text-center w-full h-25 lg:h-50 flex items-center justify-center bottom-0">
-              pommes de terre, oignons confits, comté AOP, jambon sec
-            </p></Copy>
-            <div className="z-10 bg-linear-to-t from-black to-transparent opacity-90 absolute h-full w-full"></div>
-            <div className="h-50 w-75 lg:h-75 lg:w-100 relative overflow-hidden">
-              <Image
-                alt="restaurant2"
-                fill={true}
-                className="object-cover"
-                src={"/galette3.jpg"}
-              ></Image>
-            </div>
-          </div>
-          <div className="relative">
-            <p className="z-20 text-white text-2xl absolute text-center w-full h-50 flex items-center justify-center">
-              La Bezirais{" "}
-            </p>
-             <Copy><p className="z-20 text-white absolute text-center w-full h-25 lg:h-50 flex items-center justify-center bottom-0">
-              fromage, saumon fumé, crème fraîche, ciboulette, citron
-            </p></Copy>
-            <div className="z-10 bg-linear-to-t from-black to-transparent opacity-90 absolute h-full w-full"></div>
-            <div className="h-50 w-75 lg:h-75 lg:w-100 relative overflow-hidden">
-              <Image
-                alt="restaurant2"
-                fill={true}
-                className="object-cover"
-                src={"/galette6.webp"}
-              ></Image>
-            </div>
-          </div>
-        </div>
+       
+      
       </section>
       <section
         className={`${HelveticaNeue.className} menu mb-10 lg:mb-0 h-full w-full flex items-center justify-center flex-col`}
