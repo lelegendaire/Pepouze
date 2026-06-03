@@ -283,17 +283,7 @@ export default function Home() {
               </li>
             </ul>
 
-            <div className="flex justify-between items-center w-full mt-5 text-[14px]">
-              <p className="">Bol de salade verte</p>
-              <p className="mr-3">2.00€</p>
-            </div>
-            <div className="flex justify-between items-center w-full mt-5 text-[14px]">
-              <p className="">
-                Supplément par ingrédient (oignons, champignons, pommes de
-                terre)
-              </p>
-              <p className="mr-3">1.90€</p>
-            </div>
+            
           </div>
         </div>
        
@@ -336,10 +326,7 @@ export default function Home() {
                 <p className="mr-3">4.30€</p>
               </li>
             </ul>
-            <div className="flex justify-between items-center w-full mt-5 text-[14px]">
-              <p className="">Supplément chantilly, une boule de glace</p>
-              <p className="mr-3">1.90€</p>
-            </div>
+            
           </div>
 
           <div className="w-1/2 h-100 overflow-hidden mr-10 flex items-center justify-center">

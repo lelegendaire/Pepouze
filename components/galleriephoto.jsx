@@ -23,19 +23,19 @@ import { cn } from "@/lib/utils";
 export default function Skiper49() {
   const images = [
     {
-      src: "/galette1.jpg",
+      src: "/img/rouesnais.jpg",
       alt: "Illustrations by my fav AarzooAly",
       title: "La Rouesnais",
       desc: "pommes de terre, fromage raclette, oignons confits, lardons fumés, crème",
     },
     {
-      src: "/galette2.jpg",
+      src: "/img/margatiere.jpg",
       alt: "Illustrations by my fav AarzooAly",
       title: "La Margatière",
       desc: "pommes, andouille de Guéméné, crème moutarde",
     },
     {
-      src: "/galette3.jpg",
+      src: "/img/feutelais.jpg",
       alt: "Illustrations by my fav AarzooAly",
       title: "La Feutelais",
       desc: "pommes de terre, oignons confits, comté AOP, jambon sec",

@@ -46,7 +46,7 @@ export default function Home() {
         ref={headerRef}
         className="h-screen w-full relative"
         style={{
-          backgroundImage: "url(/Hero.jpg)",
+          backgroundImage: "url(img/devanture.jpeg)",
           backgroundSize: "cover",
           backgroundPosition: `bottom ${offset * 0.5}px`, // 👈 effet parallax
         }}
@@ -176,7 +176,7 @@ export default function Home() {
             <Image
               alt="restaurant"
               fill={true}
-              src={"/devanture.webp"}
+              src={"/img/accueil.jpeg"}
               className="object-cover bg-center"
             />
           </div>
@@ -185,7 +185,7 @@ export default function Home() {
               alt="restaurant"
               fill={true}
               src={
-                "/galette3.jpg"
+                "/img/fleur.jpeg"
               }
               className="object-cover"
             />
@@ -259,10 +259,7 @@ export default function Home() {
                 <p className="mr-3">4.30€</p>
               </li>
             </ul>
-            <div className="flex justify-between items-center w-full mt-5 text-[14px]">
-              <p className="">Supplément chantilly, une boule de glace</p>
-              <p className="mr-3">1.90€</p>
-            </div>
+           
           </div>
 
           <div className="w-1/2 h-100 overflow-hidden mr-10 flex items-center justify-center">
@@ -469,17 +466,7 @@ export default function Home() {
               </li>
             </ul>
 
-            <div className="flex justify-between items-center w-full mt-5 text-[14px]">
-              <p className="">Bol de salade verte</p>
-              <p className="mr-3">2.00€</p>
-            </div>
-            <div className="flex justify-between items-center w-full mt-5 text-[14px]">
-              <p className="">
-                Supplément par ingrédient (oignons, champignons, pommes de
-                terre)
-              </p>
-              <p className="mr-3">1.90€</p>
-            </div>
+            
           </div>
         </div>
         <div className="menu_droit w-1/2 ml-10 hidden">
@@ -506,30 +493,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section
-        className={`${HelveticaNeue.className}  h-full lg:h-screen w-full flex items-center justify-center gap-5 flex-col lg:flex-row`}
-      >
-        {" "}
-        <div className="w-1/2 text-center flex flex-col items-center justify-center">
-          <h2 className="font-bold text-2xl">Marie Marion</h2>
-           <Copy><p>
-            Fille d’un formateur en cuisine et d’une psychologue, elle a grandi
-            entourée de bons petits plats et d’odeurs gourmandes. Passionnée de
-            chocolat, elle a suivi une formation d’artisan crêpier avant de
-            travailler dans plusieurs établissements rennais.{" "}
-          </p></Copy>
-        </div>
-        <div className="w-auto lg:w-1/2 flex items-center justify-center relative">
-          <div className="flex h-100 w-75 lg:h-130 lg:w-100 overflow-hidden relative">
-            <Image
-              alt="restaurant"
-              fill={true}
-              src={"/MARIE.png"}
-              className="object-cover"
-            />
-          </div>
-        </div>
-      </section>
+     
       <section
         className={`${HelveticaNeue.className} FAQ pt-10 pb-10  h-full lg:h-screen flex w-full justify-center items-center flex-col`}
       >

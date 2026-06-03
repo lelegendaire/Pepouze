@@ -101,7 +101,7 @@ const getDaysInMonth = () => {
 
   return (
     <section
-      className="relative pt-16 pb-16 text-white flex flex-col justify-center items-center bg-[url(https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] bg-cover bg-center min-h-screen"
+      className="relative pt-16 pb-16 text-white flex flex-col justify-center items-center bg-[url(/img/resto.jpeg)] bg-cover bg-center min-h-screen"
       id="reservation"
     >
       <div className="absolute inset-0 bg-black/65" />
@@ -318,7 +318,7 @@ const getDaysInMonth = () => {
                       Nombre de personnes
                     </h2>
                     <div className="flex flex-wrap gap-2">
-                      {[1,2,3,4,5,6,7,8].map(n => (
+                      {[1,2,3,4,5,6].map(n => (
                         <button key={n} onClick={() => setForm(p => ({ ...p, personnes: String(n) }))}
                           className={`w-10 h-10 rounded-full text-sm font-bold border transition-all ${form.personnes === String(n) ? "bg-white text-black border-white" : "border-white/20 text-white/70 hover:border-white/50"}`}>
                           {n}
@@ -326,7 +326,7 @@ const getDaysInMonth = () => {
                       ))}
                       <button onClick={() => setForm(p => ({ ...p, personnes: "9" }))}
                         className={`px-4 h-10 rounded-full text-xs font-bold border transition-all ${parseInt(form.personnes) >= 9 ? "bg-white text-black border-white" : "border-white/20 text-white/70 hover:border-white/50"}`}>
-                        9+
+                        7+
                       </button>
                     </div>
                   </div>

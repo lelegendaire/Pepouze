@@ -26,14 +26,14 @@ export default function Map_create() {
             <MarkerContent>
               <div className="size-4 rounded-full bg-primary border-2 border-white shadow-lg" />
             </MarkerContent>
-            <MarkerTooltip className={"flex items-center gap-1 bg-white text-black rounded-2xl p-2"}><Star size={12} fill="black" color="black"/>4.3</MarkerTooltip>
+            <MarkerTooltip className={"flex items-center gap-1 bg-white text-black rounded-2xl p-2"}><Star size={12} fill="black" color="black"/>4.7</MarkerTooltip>
             <MarkerPopup className={"border-0"}>
               <div className="space-y-1 flex">
                
                 <div>
                 <p className="font-medium text-foreground">Pépouze La Crêperie du 12</p>
                 <p className="text-xs text-muted-foreground flex items-center gap-1 ">
-                  <Star size={12} fill="black" color="black"/>4.3 - Crêperie
+                  <Star size={12} fill="black" color="black"/>4.7 - Crêperie
                 </p>
                 </div>
               </div>

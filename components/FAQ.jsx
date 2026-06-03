@@ -38,12 +38,7 @@ export function FAQ() {
           Oui, vous pouvez réserver via nos réseaux sociaux (Instagram ou Facebook) ou directement par téléphone et récemment sur notre site internet
         </AccordionContent>
       </AccordionItem>
-      <AccordionItem value="support2">
-        <AccordionTrigger className={"text-2xl"}>Faites-vous des plats à emporter?</AccordionTrigger>
-        <AccordionContent className={"text-xl"}>
-          Oui, certaines galettes et crêpes peuvent être proposées à emporter selon l’affluence.
-        </AccordionContent>
-      </AccordionItem>
+      
       <AccordionItem value="support3">
         <AccordionTrigger className={"text-2xl"}>Quels sont vos horaires d’ouverture?</AccordionTrigger>
         <AccordionContent className={"text-xl"}>
