@@ -237,14 +237,13 @@ function ModalAjout({ onClose, onAdded, defaultDate = ""  }) {
 export default function Dashboard() {
   const router = useRouter()
   const [reservations, setReservations] = useState([])
-  const [view, setView] = useState("liste")
+  const [view, setView] = useState("planning")
   const [deletingId, setDeletingId] = useState(null)
   const [confirmId, setConfirmId] = useState(null)
 const [showAjout, setShowAjout] = useState(null) // null = fermé, string = date pré-remplie ou ""
   const today = new Date()
   const [calMonth, setCalMonth] = useState(new Date(today.getFullYear(), today.getMonth(), 1))
-  const [selectedDay, setSelectedDay] = useState(null)
-
+  const [selectedDay, setSelectedDay] = useState(today)
   useEffect(() => {
     fetch("/api/reservations").then(r => r.json()).then(setReservations)
   }, [])
@@ -445,11 +444,15 @@ const [showAjout, setShowAjout] = useState(null) // null = fermé, string = date
                   const resa = getReservationsForDay(day)
                   const isToday = isSameDay(day, today)
                   const isSelected = selectedDay && isSameDay(day, selectedDay)
+                  const creneaux = getCreneaux(day)
+
                   return (
+                  
                     <button key={i} onClick={() => setSelectedDay(day)}
                       className={`aspect-square rounded-xl text-xs font-medium transition-all flex flex-col items-center justify-center relative
-                        ${isSelected ? "bg-[#6d111c] text-white" : "hover:bg-[#6d111c]/8 text-[#6d111c]"}
-                        ${isToday && !isSelected ? "border border-[#6d111c]/30" : ""}`}>
+                        ${isSelected && creneaux.length !== 0 ? "bg-[#6d111c] text-white" : "hover:bg-[#6d111c]/8 text-[#6d111c]"}
+                        ${isToday && !isSelected ? "border border-[#6d111c]/30" : ""}
+                        ${creneaux.length === 0 ? "bg-gray-500 opacity-50" : ""}`}>
                       {day.getDate()}
                       {resa.length > 0 && (
                         <span className="absolute bottom-1 flex gap-0.5">
@@ -459,8 +462,11 @@ const [showAjout, setShowAjout] = useState(null) // null = fermé, string = date
                         </span>
                       )}
                     </button>
+                 
                   )
                 })}
+              
+        
               </div>
               <div className="flex items-center gap-2 mt-4 pt-4 border-t border-[#6d111c]/8">
                 <span className="w-2 h-2 rounded-full bg-[#6d111c]" />
