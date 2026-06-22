@@ -96,12 +96,12 @@ export default function Footer() {
         </div>
         <div className="h-px bg-white/8" />
         <div className="flex justify-between items-center">
-          <span className="text-white/50">Mer · Jeu</span>
+          <span className="text-white/50">Mer</span>
           <span className="text-white text-xs">12h – 14h</span>
         </div>
         <div className="h-px bg-white/8" />
         <div className="flex justify-between items-center">
-          <span className="text-white/50">Ven · Sam</span>
+          <span className="text-white/50">Jeu · Ven · Sam</span>
           <span className="text-white text-xs">12h–14h / 19h–21h</span>
         </div>
       </div>

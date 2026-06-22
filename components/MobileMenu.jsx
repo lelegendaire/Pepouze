@@ -10,6 +10,7 @@ export default function MobileMenu() {
     { label: "Maison", href: "#" },
     { label: "Notre histoire", href: "#histoire" },
     { label: "Menu", href: "#menu" },
+    { label: "Évènements", href: "/evenements" },
     { label: "Réservation", href: "#reservation" },
     { label: "Lieu", href: "#lieu" },
   ]

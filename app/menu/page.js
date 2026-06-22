@@ -8,6 +8,7 @@ import { useState, useEffect,useRef} from "react";
 import MobileMenu from "@/components/MobileMenu"
 import Footer from "@/components/footer"
 import ReservationSection from "@/components/reservation"
+import Menu from "@/components/ui/menu"
 export default function Home() {
    const [offset, setOffset] = useState(0)
   const headerRef = useRef(null)
@@ -40,7 +41,7 @@ export default function Home() {
     <main className="text-[#6d111c]">
      <header ref={headerRef} className="h-screen w-full relative"  style={{
             backgroundImage:
-              "url(/Hero.jpg)",
+              "url(/img/devanture.jpeg)",
             backgroundSize: "cover",
             backgroundPosition: `bottom ${offset * 0.5}px`, // 👈 effet parallax
             
@@ -142,155 +143,13 @@ export default function Home() {
       <section
         className={`${HelveticaNeue.className} menu pt-10 pb-10 bg-[#f7f6f2] h-full w-full flex items-center justify-center flex-col`}
       >
-        <h1 className={`${StardomRegular.className} text-4xl`}>Notre Menu</h1>
-      
-
-        <div className="flex justify-center items-center w-full">
-          <div className="menu_gauche w-1/2 ml-10">
-            <h2 className="text-2xl font-bold">Galette de sarrasin</h2>
-            <p className="italic">
-              Toutes nos galettes sont produites à partir de la farine de
-              sarrasin IGP breton issue du moulin Carouge
-            </p>
-            <p className="mb-5 text-xl">Les classiques:</p>
-
-            <ul className="flex flex-col gap-3">
-              <li className="flex justify-between items-center border-b p-3">
-                <p>Beurre</p>
-                <p className="mr-3">3.50€</p>
-              </li>
-              <li className="flex justify-between items-center border-b p-3">
-                <div>
-                  <p className="font-bold">Complète</p>
-                  <p>beurre, ceuf miroir, jambon, fromage</p>
-                </div>
-                <div>
-                  <p className="mr-3">7.50€</p>
-                </div>
-              </li>
-              <li className="flex justify-between items-center border-b p-3">
-                <p>Andouille de Guéméné, fromage</p>
-                <p className="mr-3">7.00€</p>
-              </li>
-              <li className="flex justify-between items-center border-b p-3">
-                <p>Œuf jambon</p>
-                <p className="mr-3">6.50€</p>
-              </li>
-            </ul>
-            <p className="mb-5 text-xl mt-10">Les variantes:</p>
-
-            <ul className="flex flex-col gap-3">
-              <li className="flex justify-between items-center border-b p-3">
-                <p>Œuf comté AOP ou comté AOP jambon</p>
-                <p className="mr-3">6.50€</p>
-              </li>
-              <li className="flex justify-between items-center border-b p-3">
-                <div>
-                  <p>Super complète</p>
-                  <p>complète+ champignons</p>
-                </div>
-                <div>
-                  <p className="mr-3">9.40€</p>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div className="w-1/2 h-100 overflow-hidden mr-10 flex items-center justify-center">
-            <div className="w-70/100 h-100 relative">
-              <Image
-                alt="restaurant2"
-                fill={true}
-                className="object-cover"
-                src={
-                  "/galette5.webp"
-                }
-              ></Image>
-            </div>
-          </div>
-        </div>
-        <div className=" justify-center items-center w-full flex">
-          <div className="w-1/2 h-100 overflow-hidden mr-10 flex items-center justify-center">
-            <div className="w-70/100 h-100 relative">
-              <Image
-                alt="restaurant2"
-                fill={true}
-                className="object-cover"
-                src={
-                  "/galette6.webp"
-                }
-              ></Image>
-            </div>
-          </div>
-          <div className="menu_droit w-1/2 ml-10">
-            <p className="text-xl">Les spéciales:</p>
-            <ul className="flex flex-col gap-3">
-              <li className="flex justify-between items-center border-b p-3">
-                <div>
-                  <p className="font-bold">La Bossardière</p>
-                  <p>fromage, champignons, crème, lardons fumés</p>
-                </div>
-                <div>
-                  <p className="mr-3">10.00€</p>
-                </div>
-              </li>
-              <li className="flex justify-between items-center border-b p-3">
-                <div>
-                  <p className="font-bold">La Pépinière</p>
-                  <p>œuf, fromage, champignons</p>
-                </div>
-                <div>
-                  <p className="mr-3">7.00€</p>
-                </div>
-              </li>
-              <li className="flex justify-between items-center border-b p-3">
-                <div>
-                  <p className="font-bold">La Rouesnais</p>
-                  <p>
-                    pommes de terre, fromage raclette, oignons confits, lardons
-                    fumés, crème
-                  </p>
-                </div>
-                <div>
-                  <p className="mr-3">13.90€</p>
-                </div>
-              </li>
-              <li className="flex justify-between items-center border-b p-3">
-                <div>
-                  <p className="font-bold">La Bezirais</p>
-                  <p>fromage, saumon fumé, crème fraîche, ciboulette, citron</p>
-                </div>
-                <div>
-                  <p className="mr-3">12.40€</p>
-                </div>
-              </li>
-              <li className="flex justify-between items-center border-b p-3">
-                <div>
-                  <p className="font-bold">La Feutelais</p>
-                  <p>pommes de terre, oignons confits, comté AOP, jambon sec</p>
-                </div>
-                <div>
-                  <p className="mr-3">13.00€</p>
-                </div>
-              </li>
-              <li className="flex justify-between items-center border-b p-3">
-                <div>
-                  <p className="font-bold">La Margatière</p>
-                  <p>pommes, andouille de Guéméné, crème moutarde</p>
-                </div>
-                <div>
-                  <p className="mr-3">9.80€</p>
-                </div>
-              </li>
-            </ul>
-
-            
-          </div>
-        </div>
-       
+       <Menu/>
        
          <div className=" justify-center items-center w-full flex">
           <div className="menu_droit w-1/2 ml-10">
-            <h2 className="text-2xl font-bold">Les crêpes du moments</h2>
+            <h2 className="text-2xl font-bold">Les crêpes de  froment</h2>
+             <p className="italic">
+              Nos crêpes sont produites à partir de farine de froment, lait et oeufs bio</p>
             <p className="mb-5 text-xl">Les classiques:</p>
             <ul className="flex flex-col gap-3">
               <li className="flex justify-between items-center border-b p-3">
@@ -298,32 +157,32 @@ export default function Home() {
                 <p className="mr-3">2.80€</p>
               </li>
               <li className="flex justify-between items-center border-b p-3">
-                <p>Sucre</p>
+                <p>Sucre bio</p>
                 <p className="mr-3">2.80€</p>
               </li>
               <li className="flex justify-between items-center border-b p-3">
                 <p>Beurre sucre</p>
-                <p className="mr-3">3.60€</p>
+                <p className="mr-3">3.50€</p>
               </li>
               <li className="flex justify-between items-center border-b p-3">
                 <p>Beurre sucre citron</p>
-                <p className="mr-3">4.60€</p>
+                <p className="mr-3">4.00€</p>
               </li>
               <li className="flex justify-between items-center border-b p-3">
-                <p>Confiture(fraise,abricot)</p>
-                <p className="mr-3">4.30€</p>
+                <p>Confiture(fraise,abricot) bio</p>
+                <p className="mr-3">4.50€</p>
+              </li>
+              <li className="flex justify-between items-center border-b p-3">
+                <p>Pâte à tartiner au chocolat bio</p>
+                <p className="mr-3">4.50€</p>
               </li>
               <li className="flex justify-between items-center border-b p-3">
                 <p>Chocolat maison</p>
-                <p className="mr-3">4.60€</p>
+                <p className="mr-3">5.00€</p>
               </li>
               <li className="flex justify-between items-center border-b p-3">
                 <p>Caramel au beurre salé maison</p>
-                <p className="mr-3">4.80€</p>
-              </li>
-              <li className="flex justify-between items-center border-b p-3">
-                <p>Pâte à tartiner au chocolat</p>
-                <p className="mr-3">4.30€</p>
+                <p className="mr-3">5.50€</p>
               </li>
             </ul>
             
@@ -364,7 +223,7 @@ export default function Home() {
                   <p>crème d'amandes maison, chantilly, éclats d'amandes</p>
                 </div>
                 <div>
-                  <p className="mr-3">2.80€</p>
+                  <p className="mr-3">7.90€</p>
                 </div>
               </li>
               <li className="flex justify-between items-center border-b p-3">
@@ -375,7 +234,7 @@ export default function Home() {
                   </p>
                 </div>
                 <div>
-                  <p className="mr-3">2.80€</p>
+                  <p className="mr-3">7.50€</p>
                 </div>
               </li>
               <li className="flex justify-between items-center border-b p-3">
@@ -387,7 +246,18 @@ export default function Home() {
                   </p>
                 </div>
                 <div>
-                  <p className="mr-3">3.60€</p>
+                  <p className="mr-3">7.50€</p>
+                </div>
+              </li>
+                <li className="flex justify-between items-center border-b p-3">
+                <div>
+                  <p className="font-bold">La Fresnais</p>
+                  <p>
+                    pommes, caramel au beurre salé maison, chantilly
+                  </p>
+                </div>
+                <div>
+                  <p className="mr-3">7.90€</p>
                 </div>
               </li>
               <li className="flex justify-between items-center border-b p-3">
@@ -396,22 +266,77 @@ export default function Home() {
                   <p>poire, chocolat, éclats d'amandes, chantilly</p>
                 </div>
                 <div>
-                  <p className="mr-3">4.60€</p>
+                  <p className="mr-3">7.90€</p>
                 </div>
               </li>
             </ul>
           </div>
         </div>
+          <div className=" justify-center items-center w-full flex">
+          <div className="menu_droit w-1/2 ml-10">
+            <p className="mb-5 text-xl">Les coupes glacées:</p>
+            <ul className="flex flex-col gap-3">
+              <li className="flex justify-between items-center border-b p-3">
+                 <div>
+                  <p className="font-bold">La Bouessette</p>
+                  <p>2 boules de glace vanille ou chocolat, chocolat maison, éclats d'amende, chantilly</p>
+                </div>
+                <p className="mr-3">7.50€</p>
+              </li>
+              <li className="flex justify-between items-center border-b p-3">
+                <div>
+                  <p className="font-bold">La Pochetière</p>
+                  <p>une boules de glace vanille, poire pochée, chocolat maison, éclats d'amende, chantilly</p>
+                </div>
+                <p className="mr-3">7.50€</p>
+              </li>
+              <li className="flex justify-between items-center border-b p-3">
+                
+                  <p>Coupe 1 boule</p>
+                
+                <p className="mr-3">2.50€</p>
+              </li>
+              <li className="flex justify-between items-center border-b p-3">
+                
+                  <p>Coupe 2 boules</p>
+                
+                <p className="mr-3">4.50€</p>
+              </li>
+              
+            </ul>
+            
+          </div>
+
+          <div className="w-1/2 h-100 overflow-hidden mr-10 flex items-center justify-center">
+            <div className="w-70/100 h-100 relative">
+              <Image
+                alt="restaurant2"
+                fill={true}
+                className="object-cover"
+                src={
+                  "/crepe1.jpg"
+                }
+              ></Image>
+            </div>
+          </div>
+        </div>
          <div className="menu_droit w-1/2 ml-10 flex flex-col mt-5">
           <p className="text-xl">Formules:</p>
           <ul className="text-base border p-5 border-dashed">
-            <li>
-              Rapides (uniquement le midi): galette complète, crêpe beurre
-              sucre, bol de salade{" "}
+            <li className="flex justify-between items-center border-b p-3">
+              <div>
+                  <p className="font-bold">La rapide Pépouze (uniquement le midi):</p>
+                  <p>Galette complète, crêpe beurre succre ou confiture ou chocolat, bol de salade ou café</p>
+                </div>
+                  <p>12.90€</p>
+             
             </li>
-            <li>
-              Enfant (jusqu'à 12 ans): galette jambon fromage, crêpe chocolat,
-              verre de jus de pomme ou sirop à l'eau
+            <li className="flex justify-between items-center p-3">
+              <div>
+                  <p className="font-bold">Le Ptit Pépouze (jusqu'à 12 ans):</p>
+                  <p>Galette jambon fromage, crêpe chocolat maison ou pâte à tartiner au chocolat bio, verre de jus de pomme bio ou sirop à l'eau</p>
+                </div>
+                  <p>10.90€</p>
             </li>
           </ul>
         </div>

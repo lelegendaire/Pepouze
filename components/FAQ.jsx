@@ -42,7 +42,7 @@ export function FAQ() {
       <AccordionItem value="support3">
         <AccordionTrigger className={"text-2xl"}>Quels sont vos horaires d’ouverture?</AccordionTrigger>
         <AccordionContent className={"text-xl"}>
-          Nous sommes ouverts : du mercredi au samedi le midi et le vendredi & samedi soir. Les horaires peuvent varier, pensez à vérifier avant de venir.
+          Nous sommes ouverts : du mercredi au samedi le midi et le jeudi, vendredi & samedi soir. Les horaires peuvent varier, pensez à vérifier avant de venir.
         </AccordionContent>
       </AccordionItem>
     </Accordion>
